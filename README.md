@@ -1,6 +1,6 @@
 # HR-Leave-FE
 
-
+Figma: https://www.figma.com/file/7ns7DpOdxztwNwCCaEJWMH/Leave-Module?node-id=0%3A1
 
 ## Getting started
 
