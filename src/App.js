@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+
+import config from './config';
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+
+  background: lightpink;
+
+  @media screen and (min-width: ${config.viewport.sm}) {
+    background: red;
+  }
+
+  @media screen and (min-width: ${config.viewport.md}) {
+    background: blue;
+  }
+
+  @media screen and (min-width: ${config.viewport.lg}) {
+    background: green;
+  }
+
+  @media screen and (min-width: ${config.viewport.xl}) {
+    background: orange;
+  }
+
+`;
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+    </Wrapper>
   );
 }
 
