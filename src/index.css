@@ -2,6 +2,8 @@
 
 :root {
   font-size: 62.5%;
+
+  --font: 'Poppins', sans-serif;
 }
 
 * {

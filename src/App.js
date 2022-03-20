@@ -1,34 +1,20 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import 'antd/dist/antd.css';
 
 import config from './config';
+import SideBar from './components/SideBar';
+
 
 const Wrapper = styled.div`
   min-height: 100vh;
-
-  background: lightpink;
-
-  @media screen and (min-width: ${config.viewport.sm}) {
-    background: red;
-  }
-
-  @media screen and (min-width: ${config.viewport.md}) {
-    background: blue;
-  }
-
-  @media screen and (min-width: ${config.viewport.lg}) {
-    background: green;
-  }
-
-  @media screen and (min-width: ${config.viewport.xl}) {
-    background: orange;
-  }
-
+  background: ${config.theme.background};
 `;
 
 function App() {
 
   return (
     <Wrapper>
+      <SideBar />
     </Wrapper>
   );
 }

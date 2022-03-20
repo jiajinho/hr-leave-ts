@@ -6,7 +6,8 @@ const viewport = {
 }
 
 const theme = {
-  primary: "#7E2ECF"
+  primary: "#7e2ecf",
+  background: "#fafafa"
 }
 
 export default {
