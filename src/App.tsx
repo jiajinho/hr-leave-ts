@@ -1,25 +1,72 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import styled from 'styled-components/macro';
+import { Routes, useNavigate } from 'react-router-dom';
+
+import routes from './config/routes';
+import { generateRoute } from './utils';
+
+import useNavStore from './stores/useNavStore';
+import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
+import Header from './components/Header';
+
+
+const Wrapper = styled.main`
+  --split-threshold: 250rem;
+
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+
+  ${_Sidebar} {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: var(--split-threshold);
+    min-height: 100vh;
+  }
+`;
+
+const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: var(--split-threshold);
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  padding: 20rem;
+
+  background: #f001;
+`;
+
+const Body = styled.div`
+`;
 
 function App() {
+
+  const navigate = useNavigate();
+  const setNavigate = useNavStore(state => state.setNavigate);
+
+  useEffect(() => {
+    setNavigate(navigate);
+  }, [navigate]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Sidebar />
+
+      <Container>
+        <Header />
+
+
+        <Body>
+          <Routes>
+            {generateRoute(routes)}
+          </Routes>
+        </Body>
+      </Container>
+    </Wrapper>
   );
 }
 
