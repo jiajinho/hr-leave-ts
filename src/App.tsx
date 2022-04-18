@@ -11,11 +11,13 @@ import Header from './components/Header';
 
 
 const Wrapper = styled.main`
-  --split-threshold: 250rem;
+  --split-threshold: 230rem;
 
   position: relative;
   min-height: 100vh;
   width: 100%;
+
+  background: #fafafa;
 
   ${_Sidebar} {
     position: fixed;
@@ -35,12 +37,12 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding: 20rem;
-
-  background: #f001;
+  padding: 0 20rem;
 `;
 
 const Body = styled.div`
+
+  background: #f001;
 `;
 
 function App() {
