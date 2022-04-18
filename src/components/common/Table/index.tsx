@@ -5,16 +5,23 @@ import { Row, Column } from './types';
 
 export const Wrapper = styled.table`
   padding: 10rem;
+  width: 100%;
+
+  background: white;
+  border-radius: 10rem;
 `;
 
 export const Header = styled.th`
   padding: 10rem 20rem;
   text-align: left;
+  font-weight: 600;
 `;
 
 export const Cell = styled.td`
-  padding: 10rem 20rem;
+  padding: 20rem 20rem;
   text-align: left;
+
+  border-top: 1rem solid #e7e7e7;
 `;
 
 const Table = <T extends Row>({ data, columns }: {

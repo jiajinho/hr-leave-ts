@@ -37,12 +37,11 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding: 0 20rem;
+  padding: 0 30rem;
 `;
 
 const Body = styled.div`
-
-  background: #f001;
+  padding: 20rem 0;
 `;
 
 function App() {
