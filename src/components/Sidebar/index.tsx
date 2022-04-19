@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
 import routes from '../../config/routes';
@@ -58,9 +58,8 @@ export default () => {
   const [nodes, setNodes] = useState<React.ReactNode[]>([]);
 
   useEffect(() => {
-    if (navigate) setNodes(generateAccordion(routes));
+    navigate && setNodes(generateAccordion(routes));
   }, [navigate]);
-
 
   return (
     <Wrapper>

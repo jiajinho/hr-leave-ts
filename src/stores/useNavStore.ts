@@ -1,21 +1,20 @@
 import create from "zustand";
-import type { NavigateFunction } from "react-router-dom";
 
 import type { Route } from '../config/routes';
 import routes from '../config/routes';
 
 type NavStore = {
-  navigate: NavigateFunction | undefined,
-  setNavigate: (n: NavigateFunction | undefined) => void,
+  navigate: ((r: Route) => void) | undefined,
+  setNavigate: (fn: (r: Route) => void) => void,
 
-  current: Route,
+  current: Route | undefined,
   setCurrent: (c: Route) => void
 }
 
 export default create<NavStore>(set => ({
   navigate: undefined,
-  setNavigate: n => set({ navigate: n }),
+  setNavigate: fn => set({ navigate: fn }),
 
-  current: routes[0],
+  current: undefined,
   setCurrent: c => set({ current: c })
 }));

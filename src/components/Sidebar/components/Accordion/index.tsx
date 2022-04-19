@@ -43,6 +43,7 @@ export const Icon = styled.div`
 export const Panel = styled.div`
   position: relative;
   overflow: hidden;
+  height: 0;
 
   background: lightblue;
 `;
@@ -52,10 +53,15 @@ const normalize = (panelHeight: number) => `${panelHeight}rem`;
 
 const Accordion = ({ title, children, SVGElement, onClick }: {
   title: string
-  children?: string | JSX.Element,
+  children?: React.ReactNode[],
   SVGElement?: ({ color }: { color?: string }) => JSX.Element,
   onClick?: () => void
 }) => {
+
+  if (title === "My Request") {
+    console.log(children);
+  }
+
   /**
    * Hooks
    */
@@ -97,6 +103,8 @@ const Accordion = ({ title, children, SVGElement, onClick }: {
     panelRef.current!.style.height = height;
   }
 
+  const showCaret = children && children.length > 0;
+
   /**
    * Render
    */
@@ -107,14 +115,19 @@ const Accordion = ({ title, children, SVGElement, onClick }: {
           <Icon>
             {SVGElement ? <SVGElement /> : ''}
           </Icon>
+
           <p>{title}</p>
         </Content>
 
-        {children && <CaretDown direction={expand ? "up" : "down"} />}
+        {showCaret && <CaretDown direction={expand ? "up" : "down"} />}
       </Title>
 
       <Panel ref={panelRef}>
-        {children}
+        {children?.map((item, i) =>
+          <div key={i}>
+            {item}
+          </div>
+        )}
       </Panel>
     </Wrapper>
   );

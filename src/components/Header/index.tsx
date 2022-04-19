@@ -38,7 +38,7 @@ export default () => {
   return (
     <Wrapper>
       <Title>
-        {route.display.header}
+        {route?.display.header}
       </Title>
 
       <Button.Classic SVGElement={Switcheroo}>

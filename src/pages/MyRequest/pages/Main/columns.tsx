@@ -1,9 +1,9 @@
-import DateTime from '../../components/common/Table/plugins/DateTime';
-import LeaveDuration from '../../components/common/Table/plugins/LeaveDuration';
+import DateTime from '../../../../components/common/Table/plugins/DateTime';
+import LeaveDuration from '../../../../components/common/Table/plugins/LeaveDuration';
 import Tag from './components/Tag';
 
-import Vertical3Dot from '../../components/svg/Vertical3Dot';
-import type { Column } from '../../components/common/Table/types';
+import Vertical3Dot from '../../../../components/svg/Vertical3Dot';
+import type { Column } from '../../../../components/common/Table/types';
 import type { Schema } from './types';
 
 const columns: Column<Schema>[] = [

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import type { Status } from '../types';
-import { Wrapper as _Tag } from '../../../components/common/Tag';
+import { Wrapper as _Tag } from '../../../../../components/common/Tag';
 
 const Wrapper = styled(_Tag)`
   text-transform: capitalize;

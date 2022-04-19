@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { Routes, useNavigate } from 'react-router-dom';
+import { Routes, useNavigate, useLocation } from 'react-router-dom';
+
+import type { Route as RouteType } from './config/routes';
 
 import routes from './config/routes';
 import { generateRoute } from './utils';
@@ -45,13 +47,24 @@ const Body = styled.div`
 `;
 
 function App() {
-
   const navigate = useNavigate();
+  const location = useLocation();
+
   const setNavigate = useNavStore(state => state.setNavigate);
+  const setCurrent = useNavStore(state => state.setCurrent);
+
+  const [nodes, setNodes] = useState<React.ReactNode[]>([]);
 
   useEffect(() => {
-    setNavigate(navigate);
-  }, [navigate]);
+    setNavigate((r: RouteType) => {
+      if (r.render?.url) {
+        setCurrent(r);
+        navigate(r.render?.url);
+      }
+    });
+
+    setNodes(generateRoute(routes, location.pathname));
+  }, []);
 
   return (
     <Wrapper>
@@ -63,7 +76,7 @@ function App() {
 
         <Body>
           <Routes>
-            {generateRoute(routes)}
+            {nodes}
           </Routes>
         </Body>
       </Container>

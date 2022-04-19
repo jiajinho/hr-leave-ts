@@ -8,7 +8,7 @@ import Gear from '../components/svg/Gear';
 
 export type Route = {
   display: {
-    sidebar: string,
+    sidebar?: string,
     header: string
   },
   render?: {
@@ -16,12 +16,12 @@ export type Route = {
     component: JSX.Element
   }
   icon?: ({ color }: { color?: string }) => JSX.Element,
-  routes?: Route[]
+  routes?: { [k: string]: Route }
 }
 
-const routes: Route[] = [
+const routes = {
   //#region Dashboard
-  {
+  dashboard: {
     display: {
       sidebar: "Dashboard",
       header: "Dashboard"
@@ -34,27 +34,30 @@ const routes: Route[] = [
   },
   //#endregion
   //#region My Request
-  {
-    display: {
-      sidebar: "My Request",
-      header: "My Request"
-    },
+  myRequest: {
+    display: { sidebar: "My Request", header: "My Request" },
     render: {
       url: "/my-request",
-      component: <MyRequest />
+      component: <MyRequest.Main />
     },
-    icon: DocumentText
+    icon: DocumentText,
+    routes: {
+      detail: {
+        display: { header: "Leave Request Detail" },
+        render: { url: "/my-request/detail", component: <MyRequest.Detail /> }
+      }
+    }
   },
   //#endregion
   //#region Settings
-  {
+  settings: {
     display: {
       sidebar: "Settings",
       header: "Settings"
     },
     icon: Gear,
-    routes: [
-      {
+    routes: {
+      general: {
         display: {
           sidebar: "General",
           header: "General"
@@ -64,7 +67,7 @@ const routes: Route[] = [
           component: <Settings.General />
         }
       },
-      {
+      working: {
         display: {
           sidebar: "Working Day",
           header: "Working Day"
@@ -74,9 +77,9 @@ const routes: Route[] = [
           component: <Settings.WorkingDay />
         }
       }
-    ]
+    }
   }
   //#endregion
-]
+}
 
 export default routes;

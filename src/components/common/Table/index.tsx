@@ -6,12 +6,7 @@ import { Row, Column } from './types';
 import Pagination, { Wrapper as _Pagination } from './components/Pagination';
 
 export const Wrapper = styled.div`
-  padding: 10rem 20rem;
-  padding-bottom: 25rem;
   width: 100%;
-
-  background: white;
-  border-radius: 10rem;
 
   display: flex;
   flex-direction: column;
