@@ -19,6 +19,7 @@ export default () => {
       <Table<Schema>
         data={mockData}
         columns={columns}
+        pageSize={5}
       />
     </Wrapper>
   )

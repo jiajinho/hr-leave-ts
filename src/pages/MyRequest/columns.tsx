@@ -2,6 +2,7 @@ import DateTime from '../../components/common/Table/plugins/DateTime';
 import LeaveDuration from '../../components/common/Table/plugins/LeaveDuration';
 import Tag from './components/Tag';
 
+import Vertical3Dot from '../../components/svg/Vertical3Dot';
 import type { Column } from '../../components/common/Table/types';
 import type { Schema } from './types';
 
@@ -29,6 +30,10 @@ const columns: Column<Schema>[] = [
   {
     title: "Status HR/Admin",
     render: r => <Tag status={r.status.hr} />
+  },
+  {
+    title: "",
+    render: r => <Vertical3Dot />
   }
 ];
 
