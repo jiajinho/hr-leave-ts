@@ -1,4 +1,6 @@
 export default {
-  new: "New Request"
-
+  new: "New Request",
+  type: "Leave type",
+  duration: "Leave duration",
+  reason: "Leave reason"
 }

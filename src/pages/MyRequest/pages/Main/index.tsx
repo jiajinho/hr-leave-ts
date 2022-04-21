@@ -14,11 +14,9 @@ import Button from '../../../../components/common/Button';
 import _Button from '../../../../components/common/Button/styled';
 
 const Wrapper = styled.div`
-  padding: 10rem 20rem;
-  padding-bottom: 30rem;
-
-  background: white;
-  border-radius: 10rem;
+  padding: var(--container-padding);
+  background: var(--container-bg-color);
+  border-radius: var(--container-border-radius);
 
   display: flex;
   flex-direction: column;

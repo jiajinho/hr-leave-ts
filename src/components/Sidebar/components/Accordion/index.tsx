@@ -57,11 +57,6 @@ const Accordion = ({ title, children, SVGElement, onClick }: {
   SVGElement?: ({ color }: { color?: string }) => JSX.Element,
   onClick?: () => void
 }) => {
-
-  if (title === "My Request") {
-    console.log(children);
-  }
-
   /**
    * Hooks
    */

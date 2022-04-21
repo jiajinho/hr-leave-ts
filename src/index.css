@@ -4,8 +4,11 @@
   font-size: 6.25%;
 
   --font-family: 'Poppins', sans-serif;
-
   --primary-color: #7E2ECF;
+
+  --container-bg-color: white;
+  --container-padding: 10rem 20rem 30rem 20rem;
+  --container-border-radius: 10rem;
 }
 
 * {
@@ -24,4 +27,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.rw-widget svg {
+  color: var(--primary-color);
+}
+
+.rw-widget > div {
+  transition: 0.25s !important;
+}
+
+.rw-state-focus > div:first-of-type {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 1px 0 var(--primary-color) !important;
 }
