@@ -32,7 +32,7 @@ export default () => {
   const navigate = useNavStore(state => state.navigate);
 
   const handleNew = () => {
-    const route = routes.myRequest.routes.detail;
+    const route = routes.myRequest.routes.new;
     navigate && navigate(route);
   }
 

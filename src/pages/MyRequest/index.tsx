@@ -1,7 +1,9 @@
 import Main from "./pages/Main";
-import Detail from "./pages/Detail";
+import View from "./pages/View";
+import New from "./pages/New";
 
 export default {
   Main,
-  Detail
+  View,
+  New
 }

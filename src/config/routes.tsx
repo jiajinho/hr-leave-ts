@@ -44,7 +44,11 @@ const routes = {
     routes: {
       detail: {
         display: { header: "Leave Request Detail" },
-        render: { url: "/my-request/detail", component: <MyRequest.Detail /> }
+        render: { url: "/my-request/view", component: <MyRequest.View /> }
+      },
+      new: {
+        display: { header: "Leave Request Form" },
+        render: { url: "/my-request/new", component: <MyRequest.New /> }
       }
     }
   },
