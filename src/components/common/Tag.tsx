@@ -10,7 +10,7 @@ export const Wrapper = styled.div(({ $color, $background }: {
 
   padding: 2rem 10rem;
   display: inline-block;
-  border-radius: 2rem;
+  border-radius: 4rem;
 `);
 
 export default ({ children, color, background }: {
@@ -18,7 +18,10 @@ export default ({ children, color, background }: {
   color: string,
   background: string
 }) => (
-  <Wrapper $color={color} $background={background}>
+  <Wrapper
+    $color={color}
+    $background={background}
+  >
     {children}
   </Wrapper>
 );

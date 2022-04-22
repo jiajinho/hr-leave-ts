@@ -1,32 +1,32 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
+import ClosableTag from './components/ClosableTag';
+import Dropdown from './components/Dropdown';
 import useAnimation from './useAnimation';
 
-const Wrapper = styled.div`
-  resize: none;
-  border: 1px solid red;
+const Wrapper = styled.div(({ $focus }: { $focus: boolean }) => `
+  padding: 10rem;
+  border: 1rem solid #ccc;
+  border-radius: 4rem;
   outline: 0;
-`;
 
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  left: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rem;
 
-  margin: 5rem 0;
-  background: white;
-  box-shadow: 0 0 10rem 1rem #0004;
-`;
+  cursor: text;
+  transition: 0.25s border-color;
 
-const Item = styled.div`
-  margin: 3rem 0;
-  padding: 2rem 20rem;
-  cursor: pointer;
+  ${$focus ? `
+  border-color: var(--primary-color);
+  `: ''}
+`);
 
-  &:hover {
-    background: #eee;
-  }
+const Editable = styled.div`
+  border: none;
+  outline: none;
+  min-width: 50rem;
 `;
 
 type Option = {
@@ -34,19 +34,31 @@ type Option = {
   value: string
 }
 
-export default ({ options }: { options: Option[] }) => {
+export default ({ options, tagColor, onChange }: {
+  options: Option[],
+  tagColor: { bg: string, fg: string },
+  onChange?: (o: Option[]) => void
+}) => {
   /**
    * Hooks
    */
   const dom = {
-    container: useRef<HTMLDivElement>(null),
+    wrapper: useRef<HTMLDivElement>(null),
+    dropdown: useRef<HTMLDivElement>(null),
     editable: useRef<HTMLDivElement>(null)
   }
 
+  const [focus, setFocus] = useState(false);
+
+  const [input, setInput] = useState<string | null>(null);
   const [selections, setSelections] = useState<Option[]>([]);
   const [expand, setExpand] = useState(false);
 
-  useAnimation(dom.container, expand, setExpand);
+  useEffect(() => {
+    onChange && onChange(selections);
+  }, [selections, onChange]);
+
+  useAnimation(dom.dropdown, expand, setExpand);
 
   /**
    * Not hooks
@@ -54,7 +66,7 @@ export default ({ options }: { options: Option[] }) => {
   const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const caretPosition = window.getSelection()?.getRangeAt(0).getBoundingClientRect();
 
-    if (caretPosition && dom.container.current) {
+    if (caretPosition && dom.dropdown.current) {
       const x = caretPosition.x + caretPosition.width;
       const y = caretPosition.y + caretPosition.height;
 
@@ -62,20 +74,30 @@ export default ({ options }: { options: Option[] }) => {
         setExpand(false);
       }
       else {
-        dom.container.current.style.left = `${x}px`;
-        dom.container.current.style.top = `${y}px`;
+        dom.dropdown.current.style.left = `${x}px`;
+        dom.dropdown.current.style.top = `${y}px`;
         setExpand(true);
       }
     }
   }
 
-  const handleOptionClick = (o: Option) => {
+  const addOption = (o: Option) => {
     if (dom.editable.current) {
       dom.editable.current.innerText = "";
+      setInput(null);
     }
 
     setSelections(prev => {
       return [...prev, o];
+    });
+  }
+
+  const deleteOption = (index: number) => {
+    setSelections(prev => {
+      const clone = [...prev];
+      clone.splice(index, 1);
+
+      return clone;
     });
   }
 
@@ -84,30 +106,37 @@ export default ({ options }: { options: Option[] }) => {
    */
   return (
     <>
-      <Wrapper>
+      <Wrapper
+        ref={dom.wrapper}
+        $focus={focus}
+        onClick={() => { dom.dropdown.current?.focus() }}
+      >
         {selections.map((item, i) =>
-          <div key={i}>{item.display}</div>
+          <ClosableTag
+            key={i}
+            colors={tagColor}
+            onClose={() => deleteOption(i)}
+          >
+            {item.display}
+          </ClosableTag>
         )}
 
-        <div
+        <Editable
           ref={dom.editable}
           contentEditable
           onKeyUp={handleKeyUp}
+          onInput={e => setInput(e.currentTarget.textContent)}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
         />
       </Wrapper>
 
-      {/**Add regex filter */}
-      <Container ref={dom.container}>
-        {options.map((item, i) =>
-          <Item
-            key={i}
-            onClick={() => handleOptionClick(item)}
-          >
-            {item.display}
-          </Item>
-        )}
-      </Container>
+      <Dropdown
+        ref={dom.dropdown}
+        options={options}
+        input={input}
+        addOption={addOption}
+      />
     </>
-
   );
 }

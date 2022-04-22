@@ -61,8 +61,30 @@ export default () => {
         <TextArea />
       </Label>
 
-      <Mentions options={mockMention} />
+      <Container>
+        <Label title="Approver">
+          <Mentions
+            options={mockMention}
+            onChange={console.log}
+            tagColor={{
+              fg: "#45BF43",
+              bg: "#45BF4322"
+            }}
+          />
+        </Label>
 
+        <Label title="Recipient">
+          <Mentions
+            options={mockMention}
+            onChange={console.log}
+            tagColor={{
+              fg: "#FF4242",
+              bg: "#FF424222"
+            }}
+          />
+        </Label>
+
+      </Container>
     </Wrapper>
   )
 }

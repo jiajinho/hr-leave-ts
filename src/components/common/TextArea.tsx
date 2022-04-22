@@ -11,6 +11,7 @@ export const Wrapper = styled.textarea`
 
   transition: 0.25s border-color;
   resize: vertical;
+  font-family: var(--font-family);
 
   &:focus {
     border-color: var(--primary-color);
