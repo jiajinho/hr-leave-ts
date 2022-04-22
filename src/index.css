@@ -6,6 +6,8 @@
   --font-family: 'Poppins', sans-serif;
   --primary-color: #7E2ECF;
 
+  --form-max-width: 800rem;
+
   --container-bg-color: white;
   --container-padding: 10rem 20rem 30rem 20rem;
   --container-border-radius: 10rem;

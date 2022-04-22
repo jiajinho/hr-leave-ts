@@ -4,6 +4,10 @@ export const mentions = [
     value: "amelia"
   },
   {
+    display: "Amy",
+    value: "amy"
+  },
+  {
     display: "Joey",
     value: "joey"
   },

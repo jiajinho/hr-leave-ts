@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 `;
 
 const Box = styled.div(({ $active = false }: { $active?: boolean }) => `
-  padding: 8rem 0;
-  width: 40rem;
+  padding: 5rem 0;
+  width: 30rem;
 
   text-align: center;
   border: 1rem solid #ccc;
@@ -37,11 +37,6 @@ const InertBox = styled(Box)`
   &:hover {
     border-color: transparent;
   }
-
-  ${_CaretDownSlim} {
-    width: 15rem;
-    cursor: pointer;
-  }
 `;
 
 const CaretBox = styled(InertBox)(({ $disabled = false }: {
@@ -50,8 +45,8 @@ const CaretBox = styled(InertBox)(({ $disabled = false }: {
   cursor: ${$disabled ? 'not-allowed' : 'pointer'};
 
   ${_CaretDownSlim} {
-    width: 15rem;
-    cursor: inherit;
+    width: 10rem;
+    cursor: pointer;
   }
 `);
 

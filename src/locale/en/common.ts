@@ -3,5 +3,8 @@ export default {
     start: "Start time",
     end: "End time",
     placeholder: "Select date"
+  },
+  button: {
+    submit: "Submit"
   }
 }

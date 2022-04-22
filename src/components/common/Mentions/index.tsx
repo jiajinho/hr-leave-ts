@@ -70,10 +70,7 @@ export default ({ options, tagColor, onChange }: {
       const x = caretPosition.x + caretPosition.width;
       const y = caretPosition.y + caretPosition.height;
 
-      if (!x && !y) {
-        setExpand(false);
-      }
-      else {
+      if (x && y) {
         dom.dropdown.current.style.left = `${x}px`;
         dom.dropdown.current.style.top = `${y}px`;
         setExpand(true);

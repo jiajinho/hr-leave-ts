@@ -12,6 +12,7 @@ import mockData from './mock-data';
 import Table from '../../../../components/common/Table';
 import Button from '../../../../components/common/Button';
 import _Button from '../../../../components/common/Button/styled';
+import { Wrapper as _Vertical3Dot } from '../../../../components/svg/Vertical3Dot';
 
 const Wrapper = styled.div`
   padding: var(--container-padding);
@@ -23,6 +24,7 @@ const Wrapper = styled.div`
   gap: 35rem;
 
   ${_Button} { align-self: end }
+  ${_Vertical3Dot} { height: 14rem }
 `;
 
 export default () => {

@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useNavigate } from 'react-router-dom';
 import { DropdownList } from 'react-widgets/cjs';
 
 import locale from '../../../../locale';
+import X, { Wrapper as _X } from '../../../../components/svg/X';
 import Label from '../../../../components/common/Label';
+import Button from '../../../../components/common/Button';
+import _Button from '../../../../components/common/Button/styled';
 import DateRangePicker from '../../../../components/common/DateRangePicker';
 import Input from '../../../../components/common/Input';
 import TextArea from '../../../../components/common/TextArea';
@@ -14,13 +18,29 @@ import { mentions as mockMention } from './mock';
 const Wrapper = styled.div`
   --gap: 20rem;
 
+  position: relative;
+  max-width: var(--form-max-width);
   padding: var(--container-padding);
+  padding-top: 35rem;
+
+  margin: 0 auto;
   background: var(--container-bg-color);
   border-radius: var(--container-border-radius);
 
   display: flex;
   flex-direction: column;
   gap: 25rem;
+
+  ${_X} { 
+    position: absolute;
+    top: 15rem;
+    right: 15rem;
+    height: 25rem; 
+  }
+
+  ${_Button} {
+    align-self: end;
+  }
 `;
 
 const Container = styled.div`
@@ -29,10 +49,15 @@ const Container = styled.div`
 `;
 
 export default () => {
-
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
+      <X
+        color="var(--primary-color)"
+        hasRing
+        onClick={() => navigate(-1)}
+      />
 
       <Label title={locale.en.myRequest.type}>
         <DropdownList
@@ -62,7 +87,7 @@ export default () => {
       </Label>
 
       <Container>
-        <Label title="Approver">
+        <Label title={locale.en.myRequest.approver}>
           <Mentions
             options={mockMention}
             onChange={console.log}
@@ -73,7 +98,7 @@ export default () => {
           />
         </Label>
 
-        <Label title="Recipient">
+        <Label title={locale.en.myRequest.recipient}>
           <Mentions
             options={mockMention}
             onChange={console.log}
@@ -83,8 +108,11 @@ export default () => {
             }}
           />
         </Label>
-
       </Container>
+
+      <Button.Classic>
+        {locale.en.common.button.submit}
+      </Button.Classic>
     </Wrapper>
   )
 }
