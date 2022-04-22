@@ -7,6 +7,9 @@ import Label from '../../../../components/common/Label';
 import DateRangePicker from '../../../../components/common/DateRangePicker';
 import Input from '../../../../components/common/Input';
 import TextArea from '../../../../components/common/TextArea';
+import Mentions from '../../../../components/common/Mentions';
+
+import { mentions as mockMention } from './mock';
 
 const Wrapper = styled.div`
   --gap: 20rem;
@@ -57,6 +60,8 @@ export default () => {
       <Label title="asdsad">
         <TextArea />
       </Label>
+
+      <Mentions options={mockMention} />
 
     </Wrapper>
   )
