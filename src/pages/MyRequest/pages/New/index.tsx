@@ -3,17 +3,18 @@ import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
 import { DropdownList } from 'react-widgets/cjs';
 
-import locale from '../../../../locale';
-import X, { Wrapper as _X } from '../../../../components/svg/X';
-import Label from '../../../../components/lib/Label';
-import Button from '../../../../components/lib/Button';
-import _Button from '../../../../components/lib/Button/styled';
-import DateRangePicker from '../../../../components/common/DateRangePicker';
-import Input from '../../../../components/lib/Input';
-import TextArea from '../../../../components/lib/TextArea';
-import Mentions from '../../../../components/lib/Mentions';
+import locale from 'locale';
+import X, { Wrapper as _X } from 'components/svg/X';
+import Label from 'components/lib/Label';
+import Button from 'components/lib/Button';
+import _Button from 'components/lib/Button/styled';
+import DateRangePicker from 'components/common/DateRangePicker';
+import Input from 'components/lib/Input';
+import TextArea from 'components/lib/TextArea';
+import Multiselect from 'components/common/Multiselect';
 
 import mock from '../../mock-data';
+import { Mention } from 'pages/MyRequest/types';
 
 const Wrapper = styled.div`
   --gap: 20rem;
@@ -38,9 +39,7 @@ const Wrapper = styled.div`
     height: 25rem; 
   }
 
-  ${_Button} {
-    align-self: end;
-  }
+  ${_Button} { align-self: end }
 `;
 
 const Container = styled.div`
@@ -88,24 +87,22 @@ export default () => {
 
       <Container>
         <Label title={locale.en.myRequest.approver}>
-          <Mentions
-            options={mock.mentions}
-            onChange={console.log}
-            tagColor={{
-              fg: "#45BF43",
-              bg: "#45BF4322"
-            }}
+          <Multiselect<Mention>
+            dataKey="value"
+            textField="display"
+            data={mock.mentions}
+            bgColor="#45BF4322"
+            color="#45BF43"
           />
         </Label>
 
         <Label title={locale.en.myRequest.recipient}>
-          <Mentions
-            options={mock.mentions}
-            onChange={console.log}
-            tagColor={{
-              fg: "#FF4242",
-              bg: "#FF424222"
-            }}
+          <Multiselect<Mention>
+            dataKey="value"
+            textField="display"
+            data={mock.mentions}
+            bgColor="#FF424222"
+            color="#FF4242"
           />
         </Label>
       </Container>
@@ -114,5 +111,5 @@ export default () => {
         {locale.en.common.button.submit}
       </Button.Classic>
     </Wrapper>
-  )
+  );
 }

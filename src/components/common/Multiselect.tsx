@@ -11,7 +11,7 @@ const Multiselect = styled(WidgetMultiselect)(({
 }) => `
   ${$bgColor ? `
   & .rw-multiselect-tag {
-    background: lightpink;
+    background: ${$bgColor};
   }
   `: ''}
 
