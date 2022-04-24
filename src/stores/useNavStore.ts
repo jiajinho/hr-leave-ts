@@ -1,11 +1,10 @@
 import create from "zustand";
 
 import type { Route } from '../config/routes';
-import routes from '../config/routes';
 
 type NavStore = {
-  navigate: ((r: Route) => void) | undefined,
-  setNavigate: (fn: (r: Route) => void) => void,
+  navigate: ((r: Route, url?: string) => void) | undefined,
+  setNavigate: (fn: (r: Route, url?: string) => void) => void,
 
   current: Route | undefined,
   setCurrent: (c: Route) => void

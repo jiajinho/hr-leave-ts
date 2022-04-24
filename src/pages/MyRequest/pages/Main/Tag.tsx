@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import type { Status } from '../types';
-import { Wrapper as _Tag } from '../../../../../components/common/Tag';
+import type { Status } from '../../types';
+import { Wrapper as _Tag } from 'components/lib/Tag';
 
 const Wrapper = styled(_Tag)`
   text-transform: capitalize;
@@ -26,7 +26,6 @@ export default ({ status }: { status: Status }) => {
       background = "#FF424233";
       break;
   }
-
 
   return (
     <Wrapper

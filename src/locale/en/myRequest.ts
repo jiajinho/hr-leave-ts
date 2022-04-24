@@ -5,5 +5,6 @@ export default {
   reason: "Leave reason",
 
   approver: "Approver",
+  status: "Status",
   recipient: "Recipient"
 }

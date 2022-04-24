@@ -5,6 +5,14 @@ export default {
     placeholder: "Select date"
   },
   button: {
-    submit: "Submit"
+    submit: "Submit",
+    send: "Send",
+    cancel: "Cancel",
+    viewDetail: "View Details"
+  },
+  statCard: {
+    consumed: "Consumed",
+    remaining: "Remaining",
+    leaveRecord: "Leave Record"
   }
 }

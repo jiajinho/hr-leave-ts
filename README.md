@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+## Add Developer Gotchas
+1) useNavStore to navigate instead of native react-douter-dom
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

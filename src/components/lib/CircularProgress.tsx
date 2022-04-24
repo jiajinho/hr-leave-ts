@@ -46,19 +46,45 @@ export type Line = {
   percentage: number
 }
 
-export default ({ background = "#ddd", lines, total }: {
+export default ({ background = "#ddd", lines }: {
   background?: string,
   lines: Line[],
-  total: number
 }) => {
   const [ref, bounds] = useMeasure();
+
+  const renders: Line[] = [];
+
+  if (lines.length > 0) {
+    renders.push(lines[0]);
+
+    lines.reduce((prev, current) => {
+      const line = {
+        color: current.color,
+        percentage: prev.percentage + current.percentage
+      }
+
+      renders.push(line);
+
+      return line;
+    });
+  }
+
+  let total = 0;
+  if (renders.length > 0) {
+    total = renders[renders.length - 1].percentage;
+  }
 
   return (
     <Wrapper ref={ref}>
       <SVG width={150} height={150} viewBox="0 0 150 150" fill="none">
-        <Path cx={75} cy={75} r={70} stroke={background} />
+        <Path
+          cx={75} cy={75}
+          r={70}
+          stroke={background}
+          strokeOpacity={0.5}
+        />
 
-        {lines && lines.map(((line, i) =>
+        {renders.reverse().map(((line, i) =>
           <Path
             key={i}
             cx={75} cy={75} r={70}

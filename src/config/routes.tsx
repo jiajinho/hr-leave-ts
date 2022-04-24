@@ -42,9 +42,9 @@ const routes = {
     },
     icon: DocumentText,
     routes: {
-      detail: {
+      view: {
         display: { header: "Leave Request Detail" },
-        render: { url: "/my-request/view", component: <MyRequest.View /> }
+        render: { url: "/my-request/view/:id", component: <MyRequest.View /> }
       },
       new: {
         display: { header: "Leave Request Form" },

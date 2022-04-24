@@ -106,7 +106,7 @@ export default ({ options, tagColor, onChange }: {
       <Wrapper
         ref={dom.wrapper}
         $focus={focus}
-        onClick={() => { dom.dropdown.current?.focus() }}
+        onClick={() => { dom.editable.current?.focus() }}
       >
         {selections.map((item, i) =>
           <ClosableTag

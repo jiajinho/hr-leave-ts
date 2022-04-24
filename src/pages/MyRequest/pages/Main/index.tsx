@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import type { Schema } from './types';
+import type { Schema } from '../../types';
 
 import locale from '../../../../locale';
 import routes from '../../../../config/routes';
-
 import useNavStore from '../../../../stores/useNavStore';
-import columns from './columns';
-import mockData from './mock-data';
-import Table from '../../../../components/common/Table';
-import Button from '../../../../components/common/Button';
-import _Button from '../../../../components/common/Button/styled';
-import { Wrapper as _Vertical3Dot } from '../../../../components/svg/Vertical3Dot';
+import useColumns from './useColumns';
+import Table from '../../../../components/lib/Table';
+import Button from '../../../../components/lib/Button';
+import _Button from '../../../../components/lib/Button/styled';
+
+import mock from '../../mock-data';
 
 const Wrapper = styled.div`
   padding: var(--container-padding);
@@ -24,12 +23,13 @@ const Wrapper = styled.div`
   gap: 35rem;
 
   ${_Button} { align-self: end }
-  ${_Vertical3Dot} { height: 14rem }
 `;
 
 export default () => {
 
   const navigate = useNavStore(state => state.navigate);
+
+  const columns = useColumns();
 
   const handleNew = () => {
     const route = routes.myRequest.routes.new;
@@ -39,7 +39,7 @@ export default () => {
   return (
     <Wrapper>
       <Table<Schema>
-        data={mockData}
+        data={mock.requests}
         columns={columns}
         pageSize={5}
       />

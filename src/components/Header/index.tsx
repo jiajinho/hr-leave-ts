@@ -5,7 +5,7 @@ import locale from '../../locale';
 
 import Switcheroo from '../svg/Switcheroo';
 import useNavStore from '../../stores/useNavStore';
-import Button from '../common/Button';
+import Button from '../lib/Button';
 import Dot3x3, { Wrapper as _Dot3x3 } from '../svg/Dot3x3';
 import Profile from './components/Profile';
 

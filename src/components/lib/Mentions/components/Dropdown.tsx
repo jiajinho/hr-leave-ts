@@ -28,6 +28,7 @@ const NoResult = styled.div`
   margin: 3rem 0;
   padding: 4rem 20rem;
   color: #ccc;
+  text-align: center;
 `;
 
 export default React.forwardRef(({ options, input, addOption }: {

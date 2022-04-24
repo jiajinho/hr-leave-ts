@@ -5,15 +5,15 @@ import { DropdownList } from 'react-widgets/cjs';
 
 import locale from '../../../../locale';
 import X, { Wrapper as _X } from '../../../../components/svg/X';
-import Label from '../../../../components/common/Label';
-import Button from '../../../../components/common/Button';
-import _Button from '../../../../components/common/Button/styled';
+import Label from '../../../../components/lib/Label';
+import Button from '../../../../components/lib/Button';
+import _Button from '../../../../components/lib/Button/styled';
 import DateRangePicker from '../../../../components/common/DateRangePicker';
-import Input from '../../../../components/common/Input';
-import TextArea from '../../../../components/common/TextArea';
-import Mentions from '../../../../components/common/Mentions';
+import Input from '../../../../components/lib/Input';
+import TextArea from '../../../../components/lib/TextArea';
+import Mentions from '../../../../components/lib/Mentions';
 
-import { mentions as mockMention } from './mock';
+import mock from '../../mock-data';
 
 const Wrapper = styled.div`
   --gap: 20rem;
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 25rem;
 
-  ${_X} { 
+  & > ${_X} { 
     position: absolute;
     top: 15rem;
     right: 15rem;
@@ -89,7 +89,7 @@ export default () => {
       <Container>
         <Label title={locale.en.myRequest.approver}>
           <Mentions
-            options={mockMention}
+            options={mock.mentions}
             onChange={console.log}
             tagColor={{
               fg: "#45BF43",
@@ -100,7 +100,7 @@ export default () => {
 
         <Label title={locale.en.myRequest.recipient}>
           <Mentions
-            options={mockMention}
+            options={mock.mentions}
             onChange={console.log}
             tagColor={{
               fg: "#FF4242",

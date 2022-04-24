@@ -11,7 +11,6 @@ import useNavStore from './stores/useNavStore';
 import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
 
-
 const Wrapper = styled.main`
   --split-threshold: 230rem;
 
@@ -56,15 +55,17 @@ function App() {
   const [nodes, setNodes] = useState<React.ReactNode[]>([]);
 
   useEffect(() => {
-    setNavigate((r: RouteType) => {
+    setNavigate((r: RouteType, overwriteUrl?: string) => {
       if (r.render?.url) {
         setCurrent(r);
-        navigate(r.render?.url);
+
+        const url = overwriteUrl ? overwriteUrl : r.render.url;
+        navigate(url);
       }
     });
 
     setNodes(generateRoute(routes, location.pathname));
-  }, []);
+  }, [navigate]);
 
   return (
     <Wrapper>
@@ -72,7 +73,6 @@ function App() {
 
       <Container>
         <Header />
-
 
         <Body>
           <Routes>

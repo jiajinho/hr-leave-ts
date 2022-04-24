@@ -43,3 +43,8 @@ code {
   border-color: var(--primary-color);
   box-shadow: 0 0 1px 0 var(--primary-color) !important;
 }
+
+.rw-list-option.rw-state-selected {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}

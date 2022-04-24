@@ -8,7 +8,6 @@ export function generateRoute(routes: { [k: string]: RouteType }, currentPath: s
   const nodes: React.ReactNode[] = [];
 
   Object.entries(routes).forEach(([, item]) => {
-    // if (item.render) {
     if (item.render) {
       nodes.push(
         <Route
@@ -28,8 +27,17 @@ export function generateRoute(routes: { [k: string]: RouteType }, currentPath: s
       const childNodes = generateRoute(item.routes, currentPath);
       nodes.push(...childNodes);
     }
-    // }
   });
 
   return nodes;
+}
+
+export function getNormalRouteUrl(paramUrl: string, replace: { param: string, value: string }[]) {
+  let normalUrl = paramUrl; //clone
+
+  replace.forEach(({ param, value }) => {
+    normalUrl = normalUrl.replace(`:${param}`, value);
+  });
+
+  return normalUrl;
 }
