@@ -3,13 +3,13 @@ import styled from 'styled-components/macro';
 
 import type { Schema } from '../../types';
 
-import locale from '../../../../locale';
-import routes from '../../../../config/routes';
-import useNavStore from '../../../../stores/useNavStore';
+import locale from 'locale';
+import routes from 'config/routes';
+import useNavStore from 'stores/useNavStore';
+import Table from 'components/lib/Table';
+import Button from 'components/lib/Button';
+import _Button from 'components/lib/Button/styled';
 import useColumns from './useColumns';
-import Table from '../../../../components/lib/Table';
-import Button from '../../../../components/lib/Button';
-import _Button from '../../../../components/lib/Button/styled';
 
 import mock from '../../mock-data';
 
@@ -32,7 +32,7 @@ export default () => {
   const columns = useColumns();
 
   const handleNew = () => {
-    const route = routes.myRequest.routes.new;
+    const route = routes.myRequest.routes!.new;
     navigate && navigate(route);
   }
 

@@ -1,10 +1,12 @@
-import Dashboard from '../pages/Dashboard';
-import MyRequest from '../pages/MyRequest';
-import Settings from '../pages/Settings';
+import Dashboard from 'pages/Dashboard';
+import MyRequest from 'pages/MyRequest';
+import MyLeaveBal from 'pages/MyLeaveBal';
+import Settings from 'pages/Settings';
 
-import Home from '../components/svg/Home';
-import DocumentText from '../components/svg/DocumentText';
-import Gear from '../components/svg/Gear';
+import Home from 'components/svg/Home';
+import DocumentText from 'components/svg/DocumentText';
+import Gear from 'components/svg/Gear';
+import Database from 'components/svg/Database';
 
 export type Route = {
   display: {
@@ -19,8 +21,8 @@ export type Route = {
   routes?: { [k: string]: Route }
 }
 
-const routes = {
-  //#region Dashboard
+const routes: { [k: string]: Route } = {
+
   dashboard: {
     display: {
       sidebar: "Dashboard",
@@ -32,8 +34,6 @@ const routes = {
     },
     icon: Home
   },
-  //#endregion
-  //#region My Request
   myRequest: {
     display: { sidebar: "My Request", header: "My Request" },
     render: {
@@ -52,8 +52,14 @@ const routes = {
       }
     }
   },
-  //#endregion
-  //#region Settings
+  myLeaveBal: {
+    display: { sidebar: "My Leave Balance", header: "My Leave Balance" },
+    render: {
+      url: "/my-leave-balance",
+      component: <MyLeaveBal />
+    },
+    icon: Database
+  },
   settings: {
     display: {
       sidebar: "Settings",
@@ -83,7 +89,6 @@ const routes = {
       }
     }
   }
-  //#endregion
 }
 
 export default routes;

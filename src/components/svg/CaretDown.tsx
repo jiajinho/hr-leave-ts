@@ -8,12 +8,17 @@ export const Wrapper = styled.svg(({ $rotate }: {
   height: auto;
   width: auto;
 
-  transform: rotate(${$rotate});
+  path {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate(${$rotate});
+  }
 `);
 
 export type Direction = "up" | "down" | "left" | "right";
 
-export default ({ direction = "down" }: {
+export default ({ color = "black", direction = "down" }: {
+  color?: string,
   direction?: Direction
 }) => {
 
@@ -40,6 +45,7 @@ export default ({ direction = "down" }: {
       <path
         d="M1.37695 1.24805L9.65513 9.52623L17.9333 1.24805"
         strokeWidth={2}
+        fill={color}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

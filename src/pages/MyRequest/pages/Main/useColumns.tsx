@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
 import type { Schema } from '../../types';
-import type { Column } from '../../../../components/lib/Table/types';
+import type { Column } from 'components/lib/Table/types';
 
-import { getNormalRouteUrl } from '../../../../utils';
-import routes from '../../../../config/routes';
-import useNavStore from '../../../../stores/useNavStore';
-import DateTime from '../../../../components/lib/Table/plugins/DateTime';
-import LeaveDuration from '../../../../components/lib/Table/plugins/LeaveDuration';
-import Vertical3Dot, { Wrapper as _Vertical3Dot } from '../../../../components/svg/Vertical3Dot';
+import { getNormalRouteUrl } from 'utils';
+import routes from 'config/routes';
+import useNavStore from 'stores/useNavStore';
+import DateTime from 'components/lib/Table/plugins/DateTime';
+import LeaveDuration from 'components/lib/Table/plugins/LeaveDuration';
+import Vertical3Dot, { Wrapper as _Vertical3Dot } from 'components/svg/Vertical3Dot';
 import Tag from './Tag';
 
 const MoreDetail = styled.div`
@@ -31,9 +31,9 @@ export default () => {
 
   const handleDetailClick = (r: Schema) => {
     if (navigate) {
-      const route = routes.myRequest.routes.view;
+      const route = routes.myRequest.routes!.view;
       const url = getNormalRouteUrl(
-        route.render.url,
+        route.render!.url,
         [{ param: 'id', value: r.id }]
       );
 
