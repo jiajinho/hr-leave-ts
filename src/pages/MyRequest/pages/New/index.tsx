@@ -22,7 +22,6 @@ const Wrapper = styled.div`
   position: relative;
   max-width: var(--form-max-width);
   padding: var(--container-padding);
-  padding-top: 35rem;
 
   margin: 0 auto;
   background: var(--container-bg-color);

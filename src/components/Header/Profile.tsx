@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import CaretDownSlim, { Wrapper as _CaretDownSlim } from '../../../svg/CaretDownSlim';
+import CaretDownSlim, { Wrapper as _CaretDownSlim } from 'components/svg/CaretDownSlim';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Image = styled.img`
 
 const Container = styled.div`
   .name { font-weight: 600 }
-  .position { font-size: 12rem }
+  .position { font-size: 10rem }
 `;
 
 export default ({ imgSrc, name, position }: {
@@ -29,8 +29,6 @@ export default ({ imgSrc, name, position }: {
   name: string,
   position: string
 }) => {
-
-
   return (
     <Wrapper>
       <Image src={imgSrc} />

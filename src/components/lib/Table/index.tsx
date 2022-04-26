@@ -11,19 +11,24 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${_Pagination} {
-    align-self: end;
+  & > table { 
+    table-layout: fixed;
+    width: 100%;
   }
+
+  ${_Pagination} { align-self: end }
 `;
 
 export const Header = styled.th`
-  padding: 10rem 20rem;
+  padding: 10rem 0;
   text-align: left;
   font-weight: 600;
+
+  vertical-align: top;
 `;
 
 export const Cell = styled.td`
-  padding: 20rem 20rem;
+  padding: 20rem 0;
   text-align: left;
 
   border-top: 1rem solid #e7e7e7;

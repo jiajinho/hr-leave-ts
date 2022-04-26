@@ -2,11 +2,13 @@ import Dashboard from 'pages/Dashboard';
 import MyRequest from 'pages/MyRequest';
 import MyLeaveBal from 'pages/MyLeaveBal';
 import Settings from 'pages/Settings';
+import MyApprovals from 'pages/MyApprovals';
 
 import Home from 'components/svg/Home';
 import DocumentText from 'components/svg/DocumentText';
 import Gear from 'components/svg/Gear';
 import Database from 'components/svg/Database';
+import CheckCircle from 'components/svg/CheckCircle';
 
 export type Route = {
   display: {
@@ -22,7 +24,6 @@ export type Route = {
 }
 
 const routes: { [k: string]: Route } = {
-
   dashboard: {
     display: {
       sidebar: "Dashboard",
@@ -59,6 +60,14 @@ const routes: { [k: string]: Route } = {
       component: <MyLeaveBal />
     },
     icon: Database
+  },
+  myApprovals: {
+    display: { sidebar: "My Approvals", header: "My Approvals" },
+    render: {
+      url: "/my-approvals",
+      component: <MyApprovals.Main />
+    },
+    icon: CheckCircle
   },
   settings: {
     display: {

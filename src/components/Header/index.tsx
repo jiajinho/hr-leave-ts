@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import locale from '../../locale';
+import locale from 'locale';
 
-import Switcheroo from '../svg/Switcheroo';
-import useNavStore from '../../stores/useNavStore';
-import Button from '../lib/Button';
-import Dot3x3, { Wrapper as _Dot3x3 } from '../svg/Dot3x3';
-import Profile from './components/Profile';
+import useNavStore from 'stores/useNavStore';
+import Button from 'components/lib/Button';
+import Dot3x3, { Wrapper as _Dot3x3 } from 'components/svg/Dot3x3';
+import Switcheroo from 'components/svg/Switcheroo';
+import Profile from './Profile';
 
 const Wrapper = styled.header`
   position: relative;

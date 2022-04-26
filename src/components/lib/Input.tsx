@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 export const Wrapper = styled.input`
   width: 100%;
-  padding: 10rem;
+  padding: 7rem 15rem;
   
   outline: none;
   border-radius: 4rem;
@@ -17,12 +17,14 @@ export const Wrapper = styled.input`
   }
 `;
 
-export default ({ value, onChange }: {
+export default ({ value, placeholder, onChange }: {
   value?: string,
+  placeholder?: string
   onChange?: (s: string) => void
 }) => (
   <Wrapper
     value={value}
+    placeholder={placeholder}
     onChange={e => onChange && onChange(e.currentTarget.value)}
   />
 );

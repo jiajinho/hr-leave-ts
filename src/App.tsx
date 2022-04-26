@@ -12,13 +12,13 @@ import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
 
 const Wrapper = styled.main`
-  --split-threshold: 230rem;
+  --split-threshold: 210rem;
 
   position: relative;
   min-height: 100vh;
   width: 100%;
 
-  background: #fafafa;
+  background: #f7f7f7;
 
   ${_Sidebar} {
     position: fixed;
@@ -35,6 +35,8 @@ const Container = styled.div`
   top: 0;
   left: var(--split-threshold);
   right: 0;
+
+  background: inherit;
 
   display: flex;
   flex-direction: column;

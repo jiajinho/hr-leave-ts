@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export default styled.button`
-  padding: 7rem 20rem;
+  padding: 6rem 15rem;
 
   display: inline-flex;
   align-items: center;
@@ -12,7 +12,8 @@ export default styled.button`
   border-radius: 6rem;
 
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
   transition: 0.25s;
 
   & > svg {

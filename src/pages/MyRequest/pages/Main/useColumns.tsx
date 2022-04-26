@@ -13,13 +13,14 @@ import Vertical3Dot, { Wrapper as _Vertical3Dot } from 'components/svg/Vertical3
 import Tag from './Tag';
 
 const MoreDetail = styled.div`
-  padding: 10rem 5rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
+  & > div {
+    cursor: pointer;
+    padding: 7rem;
+  }
 
   ${_Vertical3Dot} { height: 14rem }
 `;
@@ -71,8 +72,10 @@ export default () => {
         {
           title: "",
           render: r => (
-            <MoreDetail onClick={() => handleDetailClick(r)}>
-              <Vertical3Dot />
+            <MoreDetail>
+              <div onClick={() => handleDetailClick(r)}>
+                <Vertical3Dot />
+              </div>
             </MoreDetail>
           )
         }

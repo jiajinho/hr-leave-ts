@@ -6,7 +6,7 @@ import type { Schema } from '../../types';
 import locale from 'locale';
 import routes from 'config/routes';
 import useNavStore from 'stores/useNavStore';
-import Table from 'components/lib/Table';
+import Table, { Header as _Table_Header, Cell as _Table_Cell } from 'components/lib/Table';
 import Button from 'components/lib/Button';
 import _Button from 'components/lib/Button/styled';
 import useColumns from './useColumns';
@@ -23,6 +23,11 @@ const Wrapper = styled.div`
   gap: 35rem;
 
   ${_Button} { align-self: end }
+
+  ${_Table_Header}:last-of-type,
+  ${_Table_Cell}:last-of-type {
+    width: 1%;
+  }
 `;
 
 export default () => {

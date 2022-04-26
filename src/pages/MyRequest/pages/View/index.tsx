@@ -22,17 +22,11 @@ const Wrapper = styled.div`
   justify-content: center;
   gap: 25rem;
 
-  ${_Form}, ${_Card} {
-    width: 100%;
-  }
+  ${_Form}, ${_Card} { width: 100% }
 
-  ${_Form} {
-    max-width: var(--form-max-width);
-  }
+  ${_Form} { max-width: var(--form-max-width) }
 
-  ${_Card} {
-    max-width: 550rem;
-  }
+  ${_Card} { max-width: 550rem }
 `;
 
 export default () => {
