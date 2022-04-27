@@ -18,11 +18,12 @@ const MoreDetail = styled.div`
   justify-content: center;
 
   & > div {
-    cursor: pointer;
     padding: 7rem;
+    margin: 0 20rem;
+    cursor: pointer;
   }
 
-  ${_Vertical3Dot} { height: 14rem }
+  ${_Vertical3Dot} { height: 13rem }
 `;
 
 export default () => {

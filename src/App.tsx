@@ -6,8 +6,9 @@ import type { Route as RouteType } from './config/routes';
 
 import routes from './config/routes';
 import { generateRoute } from './utils';
-
 import useNavStore from './stores/useNavStore';
+import useFixRoute from 'hooks/useFixRoute';
+
 import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
 
@@ -52,20 +53,24 @@ function App() {
   const location = useLocation();
 
   const setNavigate = useNavStore(state => state.setNavigate);
-  const setCurrent = useNavStore(state => state.setCurrent);
+  const setCurrentRoute = useNavStore(state => state.setCurrentRoute);
 
   const [nodes, setNodes] = useState<React.ReactNode[]>([]);
 
+  useFixRoute();
+
   useEffect(() => {
+    //Setup Nav
     setNavigate((r: RouteType, overwriteUrl?: string) => {
       if (r.render?.url) {
-        setCurrent(r);
+        setCurrentRoute(r);
 
         const url = overwriteUrl ? overwriteUrl : r.render.url;
         navigate(url);
       }
     });
 
+    //Set Route nodes
     setNodes(generateRoute(routes, location.pathname));
   }, [navigate]);
 

@@ -6,14 +6,14 @@ type NavStore = {
   navigate: ((r: Route, url?: string) => void) | undefined,
   setNavigate: (fn: (r: Route, url?: string) => void) => void,
 
-  current: Route | undefined,
-  setCurrent: (c: Route) => void
+  currentRoute: Route | undefined,
+  setCurrentRoute: (c: Route) => void
 }
 
 export default create<NavStore>(set => ({
   navigate: undefined,
   setNavigate: fn => set({ navigate: fn }),
 
-  current: undefined,
-  setCurrent: c => set({ current: c })
+  currentRoute: undefined,
+  setCurrentRoute: c => set({ currentRoute: c })
 }));

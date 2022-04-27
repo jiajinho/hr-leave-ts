@@ -24,9 +24,7 @@ const MoreDetails = styled.div`
     cursor: pointer;
   }
 
-  & ${_Vertical3Dot} {
-    height: 13rem;
-  }
+  ${_Vertical3Dot} { height: 13rem }
 `;
 
 export default (route: Route) => {

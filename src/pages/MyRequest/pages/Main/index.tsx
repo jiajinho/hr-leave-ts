@@ -26,12 +26,12 @@ const Wrapper = styled.div`
 
   ${_Table_Header}:last-of-type,
   ${_Table_Cell}:last-of-type {
-    width: 1%;
+    padding: 7rem;
+    width: 2%;
   }
 `;
 
 export default () => {
-
   const navigate = useNavStore(state => state.navigate);
 
   const columns = useColumns();

@@ -33,12 +33,12 @@ const Divider = styled.div`
 `;
 
 export default () => {
-  const route = useNavStore(state => state.current);
+  const currentRoute = useNavStore(state => state.currentRoute);
 
   return (
     <Wrapper>
       <Title>
-        {route?.display.header}
+        {currentRoute?.display.header}
       </Title>
 
       <Button.Classic SVGElement={Switcheroo}>

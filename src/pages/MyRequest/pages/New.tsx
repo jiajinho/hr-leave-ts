@@ -14,7 +14,7 @@ import Input from 'components/lib/Input';
 import TextArea from 'components/lib/TextArea';
 import Multiselect from 'components/common/Multiselect';
 
-import mock from '../../mock-data';
+import mock from '../mock-data';
 import { Mention } from 'pages/MyRequest/types';
 
 const Wrapper = styled.div`
