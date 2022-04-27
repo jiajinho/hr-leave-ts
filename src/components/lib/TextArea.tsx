@@ -18,12 +18,16 @@ export const Wrapper = styled.textarea`
   }
 `;
 
-export default ({ rows = 3, value }: {
+export default ({ rows = 3, value, onChange, readOnly = false }: {
   rows?: number,
-  value?: string
+  value?: string,
+  onChange?: (s: string) => void,
+  readOnly?: boolean
 }) => (
   <Wrapper
     rows={rows}
     value={value}
+    onChange={e => onChange && onChange(e.target.value)}
+    readOnly={readOnly}
   />
 );

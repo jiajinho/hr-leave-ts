@@ -62,13 +62,13 @@ export default ({
     <Wrapper>
       <DateRangePicker
         start={{
-          defaultValue: new Date(start * 1000),
-          readonly: true
+          value: new Date(start * 1000),
+          readOnly: true
         }}
 
         end={{
-          defaultValue: new Date(end * 1000),
-          readonly: true
+          value: new Date(end * 1000),
+          readOnly: true
         }}
       />
 

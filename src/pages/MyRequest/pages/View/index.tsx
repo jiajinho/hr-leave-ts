@@ -30,7 +30,6 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<Schema>();
 

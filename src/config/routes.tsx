@@ -25,10 +25,7 @@ export type Route = {
 
 const routes: { [k: string]: Route } = {
   dashboard: {
-    display: {
-      sidebar: "Dashboard",
-      header: "Dashboard"
-    },
+    display: { sidebar: "Dashboard", header: "Dashboard" },
     render: {
       url: "/",
       component: <Dashboard />
@@ -67,30 +64,31 @@ const routes: { [k: string]: Route } = {
       url: "/my-approvals",
       component: <MyApprovals.Main />
     },
-    icon: CheckCircle
+    icon: CheckCircle,
+    routes: {
+      pending: {
+        display: { header: "Pending Request Detail" },
+        render: { url: "/my-approvals/pending/:id", component: <MyApprovals.Pending /> }
+      },
+      approved: {
+        display: { header: "Approved Request Detail" },
+        render: { url: "/my-approvals/approved/:id", component: <MyApprovals.Approved /> }
+      }
+    }
   },
   settings: {
-    display: {
-      sidebar: "Settings",
-      header: "Settings"
-    },
+    display: { sidebar: "Settings", header: "Settings" },
     icon: Gear,
     routes: {
       general: {
-        display: {
-          sidebar: "General",
-          header: "General"
-        },
+        display: { sidebar: "General", header: "General" },
         render: {
           url: "/settings/general",
           component: <Settings.General />
         }
       },
       working: {
-        display: {
-          sidebar: "Working Day",
-          header: "Working Day"
-        },
+        display: { sidebar: "Working Day", header: "Working Day" },
         render: {
           url: "/settings/working",
           component: <Settings.WorkingDay />

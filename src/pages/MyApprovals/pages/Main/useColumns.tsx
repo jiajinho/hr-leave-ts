@@ -4,6 +4,10 @@ import styled from 'styled-components/macro';
 import type { User } from '../../types';
 import type { Column } from 'components/lib/Table/types';
 
+import type { Route } from 'config/routes';
+import useNavStore from 'stores/useNavStore';
+import { fillRouteParam } from 'utils';
+
 import Username from 'components/lib/Table/plugins/Username';
 import DateTime from 'components/lib/Table/plugins/DateTime';
 import LeaveDuration from 'components/lib/Table/plugins/LeaveDuration';
@@ -25,8 +29,21 @@ const MoreDetails = styled.div`
   }
 `;
 
-export default () => {
+export default (route: Route) => {
+  const navigate = useNavStore(state => state.navigate);
+
   const [columns, setColumns] = useState<Column<User>[]>([]);
+
+  const handleDetailClick = (r: User) => {
+    if (navigate && route.render) {
+      const url = fillRouteParam(
+        route.render.url,
+        [{ param: 'id', value: r.id }]
+      );
+
+      navigate(route, url);
+    }
+  }
 
   useEffect(() => {
     const columns: Column<User>[] = [
@@ -59,7 +76,7 @@ export default () => {
         title: "",
         render: r => (
           <MoreDetails>
-            <div>
+            <div onClick={() => handleDetailClick(r)}>
               <Vertical3Dot />
             </div>
           </MoreDetails>

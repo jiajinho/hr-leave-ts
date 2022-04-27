@@ -17,14 +17,16 @@ export const Wrapper = styled.input`
   }
 `;
 
-export default ({ value, placeholder, onChange }: {
+export default ({ value, placeholder, onChange, readOnly = false }: {
   value?: string,
   placeholder?: string
-  onChange?: (s: string) => void
+  onChange?: (s: string) => void,
+  readOnly?: boolean
 }) => (
   <Wrapper
     value={value}
     placeholder={placeholder}
     onChange={e => onChange && onChange(e.currentTarget.value)}
+    readOnly={readOnly}
   />
 );

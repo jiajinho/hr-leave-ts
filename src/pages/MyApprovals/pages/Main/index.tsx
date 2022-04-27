@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import Table from './Table';
-
 import mock from '../../mock-data';
+import routes from 'config/routes';
+
+import Table from './Table';
 import useColumns from './useColumns';
 
 const Wrapper = styled.div`
@@ -13,8 +14,10 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-
-  const columns = useColumns();
+  const columns = {
+    pending: useColumns(routes.myApprovals.routes!.pending),
+    approved: useColumns(routes.myApprovals.routes!.approved)
+  }
 
   return (
     <Wrapper>
@@ -22,14 +25,14 @@ export default () => {
         title="Pending Approvals"
         options={mock.departments}
         users={mock.pendingUsers}
-        columns={columns}
+        columns={columns.pending}
       />
 
       <Table
         title="Approved Requests"
         options={mock.departments}
         users={mock.approvedUsers}
-        columns={columns}
+        columns={columns.approved}
       />
     </Wrapper>
   );

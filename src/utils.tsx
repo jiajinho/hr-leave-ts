@@ -32,7 +32,7 @@ export function generateRoute(routes: { [k: string]: RouteType }, currentPath: s
   return nodes;
 }
 
-export function getNormalRouteUrl(paramUrl: string, replace: { param: string, value: string }[]) {
+export function fillRouteParam(paramUrl: string, replace: { param: string, value: string }[]) {
   let normalUrl = paramUrl; //clone
 
   replace.forEach(({ param, value }) => {

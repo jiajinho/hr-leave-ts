@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { DropdownList } from 'react-widgets/cjs';
 
 import locale from 'locale';
+
 import X, { Wrapper as _X } from 'components/svg/X';
 import Label from 'components/lib/Label';
 import Button from 'components/lib/Button';
@@ -22,6 +23,7 @@ const Wrapper = styled.div`
   position: relative;
   max-width: var(--form-max-width);
   padding: var(--container-padding);
+  padding-top: 35rem;
 
   margin: 0 auto;
   background: var(--container-bg-color);
@@ -33,15 +35,15 @@ const Wrapper = styled.div`
 
   & > ${_X} { 
     position: absolute;
-    top: 15rem;
-    right: 15rem;
-    height: 25rem; 
+    top: 12rem;
+    right: 12rem;
+    height: 20rem; 
   }
 
   ${_Button} { align-self: end }
 `;
 
-const Container = styled.div`
+const FlexContainer = styled.div`
   display: flex;
   gap: var(--gap);
 `;
@@ -70,7 +72,7 @@ export default () => {
 
       <DateRangePicker />
 
-      <Container>
+      <FlexContainer>
         <Label title={locale.en.myRequest.duration}>
           <Input />
         </Label>
@@ -78,13 +80,13 @@ export default () => {
         <Label title={locale.en.myRequest.reason}>
           <Input />
         </Label>
-      </Container>
+      </FlexContainer>
 
       <Label title="asdsad">
         <TextArea />
       </Label>
 
-      <Container>
+      <FlexContainer>
         <Label title={locale.en.myRequest.approver}>
           <Multiselect<Mention>
             dataKey="value"
@@ -104,7 +106,7 @@ export default () => {
             color="#FF4242"
           />
         </Label>
-      </Container>
+      </FlexContainer>
 
       <Button.Classic>
         {locale.en.common.button.submit}

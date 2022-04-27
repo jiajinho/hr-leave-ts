@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import type { Schema } from '../../types';
 import type { Column } from 'components/lib/Table/types';
 
-import { getNormalRouteUrl } from 'utils';
+import { fillRouteParam } from 'utils';
 import routes from 'config/routes';
 import useNavStore from 'stores/useNavStore';
 import DateTime from 'components/lib/Table/plugins/DateTime';
@@ -31,9 +31,10 @@ export default () => {
   const [columns, setColumns] = useState<Column<Schema>[]>([]);
 
   const handleDetailClick = (r: Schema) => {
-    if (navigate) {
-      const route = routes.myRequest.routes!.view;
-      const url = getNormalRouteUrl(
+    const route = routes.myRequest.routes!.view;
+
+    if (navigate && route.render) {
+      const url = fillRouteParam(
         route.render!.url,
         [{ param: 'id', value: r.id }]
       );

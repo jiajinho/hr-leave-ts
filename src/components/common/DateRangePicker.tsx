@@ -13,8 +13,9 @@ export const Wrapper = styled.div`
 `;
 
 export type DateType = {
-  defaultValue?: Date,
-  readonly?: boolean
+  value?: Date | null | undefined,
+  onChange?: (d: Date | null | undefined) => void,
+  readOnly?: boolean
 }
 
 export default ({ start, end }: {
@@ -25,8 +26,9 @@ export default ({ start, end }: {
     <Wrapper>
       <Label title={locale.en.common.date.start}>
         <DatePicker
-          defaultValue={start?.defaultValue}
-          readOnly={start?.readonly}
+          value={start?.value}
+          onChange={(d) => start?.onChange && start.onChange(d)}
+          readOnly={start?.readOnly}
           placeholder={locale.en.common.date.placeholder}
           valueFormat={{ dateStyle: "medium" }}
         />
@@ -34,8 +36,9 @@ export default ({ start, end }: {
 
       <Label title={locale.en.common.date.end}>
         <DatePicker
-          defaultValue={end?.defaultValue}
-          readOnly={end?.readonly}
+          value={end?.value}
+          onChange={(d) => end?.onChange && end.onChange(d)}
+          readOnly={end?.readOnly}
           placeholder={locale.en.common.date.placeholder}
           valueFormat={{ dateStyle: "medium" }}
         />

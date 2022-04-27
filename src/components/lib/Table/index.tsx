@@ -6,8 +6,9 @@ import { Row, Column } from './types';
 import Pagination, { Wrapper as _Pagination } from './components/Pagination';
 
 export const Wrapper = styled.div`
-  width: 100%;
+  --padding-left: 20rem;
 
+  width: 100%;
   display: flex;
   flex-direction: column;
 
@@ -24,12 +25,20 @@ export const Header = styled.th`
   text-align: left;
   font-weight: 600;
 
+  &:not(:first-of-type) {
+    padding-left: var(--padding-left);
+  }
+
   vertical-align: top;
 `;
 
 export const Cell = styled.td`
   padding: 20rem 0;
   text-align: left;
+
+  &:not(:first-of-type) {
+    padding-left: var(--padding-left);
+  }
 
   border-top: 1rem solid #e7e7e7;
 `;
