@@ -1,29 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
-import CaretDown, { Wrapper as _CaretDown } from '../../../svg/CaretDown';
+import CaretDown, { Wrapper as _CaretDown } from 'components/svg/CaretDown';
 import useAnimation from './useAnimation';
 
-export const Wrapper = styled.div`
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+export const Wrapper = styled.div(({ $active, $logout }: {
+  $active: boolean,
+  $logout: boolean
+}) => `
+  --color: ${$active ? "white" : "#eee8"};
+  --bg: ${$active ? "#eee3" : "#fff0"};
 
-  &:hover {
-    background: blue;
-  }
-`;
+  ${$logout ? `
+  --color: white;
+  --bg: #fff0;
+  `: ''}
+
+  margin: 6rem 0;
+`);
 
 export const Title = styled.div`
   padding: 7rem 20rem;
   cursor: pointer;
+  transition: 0.25s color, 0.25s background;
+
+  color: var(--color);
+  background: var(--bg);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  ${_CaretDown} {
-    height: 7rem;
-  }
+  &:hover { background: #eee3 }
+
+  ${_CaretDown} { height: 7rem }
 `;
 
 const Content = styled.div`
@@ -44,18 +54,25 @@ export const Panel = styled.div`
   position: relative;
   overflow: hidden;
   height: 0;
-
-  background: lightblue;
 `;
 
 //Normalize into preferred unit css
 const normalize = (panelHeight: number) => `${panelHeight}rem`;
 
-const Accordion = ({ title, children, SVGElement, onClick }: {
+const Accordion = ({
+  title,
+  children,
+  SVGElement,
+  onClick,
+  active = false,
+  logout = false
+}: {
   title: string
   children?: React.ReactNode[],
   SVGElement?: ({ color }: { color?: string }) => JSX.Element,
-  onClick?: () => void
+  onClick?: () => void,
+  active?: boolean,
+  logout?: boolean
 }) => {
   /**
    * Hooks
@@ -104,17 +121,26 @@ const Accordion = ({ title, children, SVGElement, onClick }: {
    * Render
    */
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper
+      onClick={onClick}
+      $active={active}
+      $logout={logout}
+    >
       <Title onClick={() => setExpand(!expand)}>
         <Content>
           <Icon>
-            {SVGElement ? <SVGElement /> : ''}
+            {SVGElement ? <SVGElement color="var(--color)" /> : ''}
           </Icon>
 
           <p>{title}</p>
         </Content>
 
-        {showCaret && <CaretDown direction={expand ? "up" : "down"} />}
+        {showCaret && (
+          <CaretDown
+            direction={expand ? "up" : "down"}
+            color="var(--color)"
+          />
+        )}
       </Title>
 
       <Panel ref={panelRef}>

@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components/macro';
 
-import routes from '../../config/routes';
-import useNavStore from '../../stores/useNavStore';
-
+import locale from 'locale';
+import routes from 'config/routes';
+import useNavStore from 'stores/useNavStore';
 import { generateAccordion } from './utils';
+
+import Logout from 'components/svg/Logout';
 import Accordion, { Wrapper as _Accordion, Title as _Accordion_Title } from './components/Accordion';
 import Logo, { Wrapper as _Logo } from './components/Logo';
-import Logout from '../svg/Logout';
 
 export const Wrapper = styled.div`
-  --nearest-accordion-margin: 10rem;
-  --nearest-accordion-title-padding: 15rem 10rem;
+  --top-level-accordion-margin: 8rem;
+  --top-level-accordion-title-padding: 12rem 10rem;
+  --top-level-accordion-title-border-radius: 4rem;
 
   padding-top: 30rem;
   padding-bottom: 40rem;
@@ -22,16 +24,13 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  ${_Logo} {
-    align-self: center;
-  }
+  ${_Logo} { align-self: center }
 
-  & > ${_Accordion} {
-    margin: var(--nearest-accordion-margin);
-  }
+  & > ${_Accordion} { margin: var(--top-level-accordion-margin) }
 
   & > ${_Accordion} > ${_Accordion_Title} {
-    padding: var(--nearest-accordion-title-padding);
+    padding: var(--top-level-accordion-title-padding);
+    border-radius: var(--top-level-accordion-title-border-radius);
   }
 `;
 
@@ -44,22 +43,24 @@ const Nav = styled.div`
   margin: 40rem 0;
   align-self: stretch;
   
-  & > ${_Accordion} {
-    margin: var(--nearest-accordion-margin);
-  }
+  & > ${_Accordion} { margin: var(--top-level-accordion-margin) }
 
   & > ${_Accordion} > ${_Accordion_Title} {
-    padding: var(--nearest-accordion-title-padding)
+    padding: var(--top-level-accordion-title-padding);
+    border-radius: var(--top-level-accordion-title-border-radius);
   }
 `;
 
 export default () => {
   const navigate = useNavStore(state => state.navigate);
-  const [nodes, setNodes] = useState<React.ReactNode[]>([]);
+  const currentRoute = useNavStore(state => state.currentRoute);
 
-  useEffect(() => {
-    navigate && setNodes(generateAccordion(routes));
-  }, [navigate]);
+  const nodes = useMemo(() => {
+    if (navigate) {
+      return generateAccordion(routes);
+    }
+  }, [navigate, currentRoute]);
+
 
   return (
     <Wrapper>
@@ -68,9 +69,9 @@ export default () => {
         <Nav>{nodes}</Nav>
       </Container>
 
-
       <Accordion
-        title="Logout"
+        title={locale.en.common.logout}
+        logout
         SVGElement={Logout}
         onClick={() => console.log("logout!")}
       />

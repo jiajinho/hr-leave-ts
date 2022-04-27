@@ -8,7 +8,7 @@ export function generateRoute(routes: { [k: string]: RouteType }, currentPath: s
   const nodes: React.ReactNode[] = [];
 
   Object.entries(routes).forEach(([, item]) => {
-    if (item.render) {
+    if (item.render.component) {
       nodes.push(
         <Route
           key={item.render.url}

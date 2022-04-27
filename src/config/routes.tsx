@@ -15,9 +15,9 @@ export type Route = {
     sidebar?: string,
     header: string
   },
-  render?: {
+  render: {
     url: string,
-    component: JSX.Element
+    component?: JSX.Element
   }
   icon?: ({ color }: { color?: string }) => JSX.Element,
   routes?: { [k: string]: Route }
@@ -78,6 +78,7 @@ const routes: { [k: string]: Route } = {
   },
   settings: {
     display: { sidebar: "Settings", header: "Settings" },
+    render: { url: "/settings" },
     icon: Gear,
     routes: {
       general: {

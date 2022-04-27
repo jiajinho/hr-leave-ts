@@ -14,5 +14,6 @@ export default {
     consumed: "Consumed",
     remaining: "Remaining",
     leaveRecord: "Leave Record"
-  }
+  },
+  logout: "Logout"
 }

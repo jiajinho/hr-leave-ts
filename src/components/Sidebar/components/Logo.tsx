@@ -7,10 +7,6 @@ export const Wrapper = styled.img`
   width: auto;
 `;
 
-export default () => {
-  return (
-    <Wrapper
-      src="/static/logo.png"
-    />
-  );
-}
+export default () => (
+  <Wrapper src="/static/logo.png" />
+);

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { DatePicker } from 'react-widgets/cjs';
 
-import locale from '../../locale';
-import Label, { Wrapper as _Label } from '../lib/Label';
+import locale from 'locale';
+import Label, { Wrapper as _Label } from 'components/lib/Label';
 
 export const Wrapper = styled.div`
   display: flex;

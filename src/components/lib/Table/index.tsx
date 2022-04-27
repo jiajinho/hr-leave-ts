@@ -33,7 +33,7 @@ export const Header = styled.th`
 `;
 
 export const Cell = styled.td`
-  padding: 20rem 0;
+  padding: 15rem 0;
   text-align: left;
 
   &:not(:first-of-type) {

@@ -10,7 +10,7 @@ export const Wrapper = styled.div(({ $expand }: { $expand: boolean }) => `
   position: relative;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 1rem solid #ccc;
 
   transition: 0.25s border-color;
 
@@ -30,11 +30,11 @@ export const Wrapper = styled.div(({ $expand }: { $expand: boolean }) => `
 
 const Input = styled.input`
   width: 100%;
-  min-height: 38px;
+  min-height: 32rem;
 
   border: none;
   outline: none;
-  border-radius: 4px;
+  border-radius: 4rem;
 
   font-size: 1em;
   font-family: var(--font-family);
