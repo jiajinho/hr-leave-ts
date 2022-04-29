@@ -3,9 +3,8 @@ import styled from 'styled-components/macro';
 import { DropdownList as WidgetDropdownList } from 'react-widgets/cjs';
 
 import locale from 'locale';
-import CircularProgress, { Wrapper as _CircularProgress } from 'components/lib/CircularProgress';
-import { Wrapper as _Wrapper, Title } from '../../../../../styled';
-import Stat from '../../../components/Stat';
+import { Wrapper as _Wrapper, Title } from 'components/common/Card/styled';
+import Stat from '../../../Stat';
 
 const StatBox = styled.div`
   margin: 20rem 0;

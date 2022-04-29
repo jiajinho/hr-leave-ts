@@ -2,46 +2,70 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import locale from 'locale';
+
 import Button from 'components/lib/Button';
 import CircularProgress, { Wrapper as _CircularProgress } from 'components/lib/CircularProgress';
+import PlusCircle, { Wrapper as _PlusCircle } from 'components/svg/PlusCircle';
 import { Wrapper as _Wrapper, Title, Stripe } from '../../../styled';
-import Stat from '../components/Stat';
+import Stat from '../Stat';
 
 const Wrapper = styled(_Wrapper)`
   display: flex;
 
-  ${_CircularProgress} {
-    height: 12rem;
-  }
+  ${_CircularProgress} { height: 120rem }
 `;
 
-const StatBox = styled.div`
-  margin: 2rem 0;
+const Heading = styled.div`
   display: flex;
-  gap: 4rem;
+  align-items: center;
+  gap: 10rem;
+
+  ${_PlusCircle} { 
+    height: 23rem;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  ${_PlusCircle}:hover { opacity: 0.7 }
+`;
+
+
+const StatBox = styled.div`
+  margin: 20rem 0;
+  display: flex;
+  gap: 40rem;
 `;
 
 const ProgressContainer = styled.div`
   flex-grow: 1;
 
-  margin: 0 2rem;
+  margin: 0 20rem;
   display: flex;
   justify-content: end;
 `;
 
-export default ({ title, consumed, remaining, percentage, onViewClick }: {
+export default ({ title, consumed, remaining, percentage, onViewClick, onPlusClick }: {
   title: string,
   consumed: string,
   remaining: string,
   percentage: number,
-  number: number,
-  onViewClick: () => void
+  onViewClick?: () => void,
+  onPlusClick?: () => void
 }) => (
   <Wrapper>
     <Stripe />
 
     <div>
-      <Title>{title}</Title>
+      <Heading>
+        <Title>{title}</Title>
+        {onPlusClick &&
+          <PlusCircle
+            color="var(--primary-color)"
+            onClick={onPlusClick}
+          />
+        }
+      </Heading>
+
 
       <StatBox>
         <Stat
@@ -56,13 +80,13 @@ export default ({ title, consumed, remaining, percentage, onViewClick }: {
       </StatBox>
 
       <Button.Classic onClick={onViewClick}>
-        View Details
+        {locale.en.common.button.viewDetail}
       </Button.Classic>
     </div>
 
     <ProgressContainer>
       <CircularProgress
-        background={`var(--primary-color)33`}
+        background="#ccc"
         lines={[
           { color: 'var(--primary-color)', percentage }
         ]}
