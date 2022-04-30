@@ -12,12 +12,12 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > table { 
-    table-layout: fixed;
-    width: 100%;
-  }
-
   ${_Pagination} { align-self: end }
+`;
+
+export const Table = styled.table`
+  table-layout: fixed;
+  width: 100%;
 `;
 
 export const Header = styled.th`
@@ -58,7 +58,7 @@ export default <T extends Row>({ data, columns, pageSize }: {
 
   return (
     <Wrapper>
-      <table>
+      <Table>
         <thead>
           <tr>
             {columns.map((column, i) =>
@@ -78,7 +78,7 @@ export default <T extends Row>({ data, columns, pageSize }: {
             </tr>
           )}
         </tbody>
-      </table>
+      </Table>
 
       <Pagination
         totalCount={data.length}

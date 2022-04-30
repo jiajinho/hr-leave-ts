@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { Calendar } from 'react-widgets/cjs';
 import { format } from 'date-fns';
 
+import datetime from 'config/datetime';
 import useDropdown from 'hooks/animation/useDropdown';
 import CaretDown, { Wrapper as _CaretDown } from 'components/svg/CaretDown';
 
@@ -53,10 +54,12 @@ export const CalendarContainer = styled.div`
   width: 20em;
 `;
 
-export default () => {
+export default ({ value, onChange }: {
+  value?: Date,
+  onChange?: (d: Date) => void
+}) => {
   const calendar = useRef<HTMLDivElement>(null);
 
-  const [input, setInput] = useState("");
   const [expand, setExpand] = useState(false);
 
   useDropdown(calendar, expand, setExpand);
@@ -67,15 +70,18 @@ export default () => {
   }
 
   const handleCalendarChange = (d: Date) => {
-    setInput(format(d, 'MMMM yyyy'));
+    onChange && onChange(d);
     setExpand(false);
   }
+
+  const inputValue = value ?
+    format(value, datetime.format.monthPicker) : "";
 
   return (
     <Wrapper $expand={expand}>
       <Input
         onClick={handleInputClick}
-        value={input}
+        value={inputValue}
         readOnly
       />
 
