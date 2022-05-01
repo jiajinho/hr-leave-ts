@@ -5,14 +5,15 @@ import Header from './components/Header';
 import Body from './components/Body';
 import Legends, { Wrapper as _Legends } from 'components/common/Legends';
 
-const Wrapper = styled.div`
-  position: relative;
+export const Wrapper = styled.div`
+  flex-grow: 1;
 
+  position: relative;
+  padding: 15rem;
   display: flex;
   flex-direction: column;
 
   background: var(--container-bg-color);
-  padding: 15rem;
   border-radius: var(--container-border-radius);
 
   ${_Legends} {
@@ -32,18 +33,9 @@ export default () => {
 
       <Legends
         data={[
-          {
-            color: "red",
-            label: "Christmas"
-          },
-          {
-            color: "blue",
-            label: "Turkey"
-          },
-          {
-            color: "lightpink",
-            label: "Chinese New Year"
-          }
+          { color: "red", label: "Christmas" },
+          { color: "blue", label: "Turkey" },
+          { color: "lightpink", label: "Chinese New Year" }
         ]}
       />
     </Wrapper>

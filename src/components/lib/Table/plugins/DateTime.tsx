@@ -7,14 +7,12 @@ export const Wrapper = styled.div`
 `;
 
 export default ({ epoch }: { epoch: number }) => {
-  // const unix = dayjs.unix(epoch);
-
   const date = fromUnixTime(epoch);
 
   return (
     <Wrapper>
       <p>{format(date, 'MMM do, yyyy')}</p>
-      <span>{format(date, 'hh:mm a..aa')}</span>
+      <span>{format(date, 'hh:mm a')}</span>
     </Wrapper>
   );
 }

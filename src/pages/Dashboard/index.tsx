@@ -3,19 +3,25 @@ import styled from 'styled-components/macro';
 
 import Card from 'components/common/Card';
 import MovementChart from './components/MovementChart';
+import Calendar from './components/Calendar';
 
 const Wrapper = styled.div`
+  --gap: 25rem;
+
 `;
 
 const CardContainer = styled.div`
   display: flex;
-  gap: 30rem;
+  gap: var(--gap);
 
   & > * { width: 100% }
 `;
 
 const ChartContainer = styled.div`
-  margin-top: 20rem;
+  margin-top: var(--gap);
+
+  display: flex;
+  gap: var(--gap);
 `;
 
 export default () => {
@@ -41,15 +47,10 @@ export default () => {
         />
       </CardContainer>
 
-
       <ChartContainer>
-
         <MovementChart />
-
+        <Calendar />
       </ChartContainer>
-
-
-
     </Wrapper>
   );
 }

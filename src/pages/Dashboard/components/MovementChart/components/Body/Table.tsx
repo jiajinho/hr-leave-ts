@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
   ${_Cell} {
     padding: var(--cell-padding);
-    min-width: 30rem;
+    min-width: 20rem;
     text-align: center;
     font-size: 11rem;
     color: #999;

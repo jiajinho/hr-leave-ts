@@ -21,8 +21,6 @@ export default (date: Date) => {
     const month = getMonth(date);
     const year = getYear(date);
 
-    console.log(month, year);
-
     for (let i = 0; i < daysInMonth; i++) {
       const adjustedDay = i + 1;
 

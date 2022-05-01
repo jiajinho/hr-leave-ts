@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 12rem;
+  column-gap: 12rem;
   flex-wrap: wrap;
 `;
 

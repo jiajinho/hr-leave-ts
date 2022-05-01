@@ -8,11 +8,9 @@ export const Wrapper = styled.svg(({ $rotate }: {
   height: auto;
   width: auto;
 
-  path {
     transform-box: fill-box;
     transform-origin: center;
     transform: rotate(${$rotate});
-  }
 `);
 
 export type Direction = "up" | "down" | "left" | "right";
