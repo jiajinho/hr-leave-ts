@@ -1,18 +1,33 @@
 import React from "react";
+
 import type { Route as RouteType } from "../../config/routes";
+import type { Type as UserType } from "types/user";
 
 import useNavStore from "../../stores/useNavStore";
+import useUserStore from "stores/useUserStore";
+
 import Accordion from "./components/Accordion";
+
+function checkIsRenderable(item: RouteType, userType: UserType): boolean {
+  if (!item.display.sidebar) {
+    return false;
+  }
+
+  return item.allowUsers.includes(userType);
+}
 
 export function generateAccordion(routes: { [k: string]: RouteType }) {
   const nodes: React.ReactNode[] = [];
 
+  const userType = useUserStore.getState().type;
   const navigate = useNavStore.getState().navigate;
   const currentRoute = useNavStore.getState().currentRoute;
 
   Object.entries(routes).forEach(([, item], i) => {
-    if (!item.display.sidebar) return;
+    //Check renderable
+    if (!checkIsRenderable(item, userType)) return;
 
+    //Render
     let active = false;
     if (item.render && currentRoute && currentRoute.render) {
       const regex = item.render.url === "/" ?
@@ -29,7 +44,7 @@ export function generateAccordion(routes: { [k: string]: RouteType }) {
     nodes.push(
       <Accordion
         key={i}
-        title={item.display.sidebar}
+        title={item.display.sidebar!}
         SVGElement={item.icon}
         onClick={handleClick}
         active={active}

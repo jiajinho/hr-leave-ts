@@ -7,10 +7,12 @@ import type { Route as RouteType } from './config/routes';
 import routes from './config/routes';
 import { generateRoute } from './utils';
 import useNavStore from './stores/useNavStore';
+import useUserStore from 'stores/useUserStore';
 import useFixRoute from 'hooks/useFixRoute';
 
 import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
+import useRoutePermission from 'hooks/useRoutePermission';
 
 const Wrapper = styled.main`
   --split-threshold: 210rem;
@@ -49,11 +51,18 @@ const Body = styled.div`
 `;
 
 function App() {
+  /**
+   * Hooks
+   */
+  //react-router-dom
   const navigate = useNavigate();
   const location = useLocation();
 
+  //stores
   const setNavigate = useNavStore(state => state.setNavigate);
   const setCurrentRoute = useNavStore(state => state.setCurrentRoute);
+
+  const setUserType = useUserStore(state => state.setType);
 
   const [nodes, setNodes] = useState<React.ReactNode[]>([]);
 
@@ -74,6 +83,15 @@ function App() {
     setNodes(generateRoute(routes, location.pathname));
   }, [navigate]);
 
+  useEffect(() => {
+    setUserType("admin");
+  }, []);
+
+  useRoutePermission();
+
+  /**
+   * Render
+   */
   return (
     <Wrapper>
       <Sidebar />

@@ -1,9 +1,12 @@
+import type { Type as UserType } from 'types/user';
+
 import Dashboard from 'pages/Dashboard';
 import MyRequest from 'pages/MyRequest';
 import MyLeaveBal from 'pages/MyLeaveBal';
 import Settings from 'pages/Settings';
 import MyApprovals from 'pages/MyApprovals';
 import ActivityLog from 'pages/ActivityLog';
+import Error404 from 'pages/Error404';
 
 import Home from 'components/svg/Home';
 import DocumentText from 'components/svg/DocumentText';
@@ -12,7 +15,11 @@ import Database from 'components/svg/Database';
 import CheckCircle from 'components/svg/CheckCircle';
 import DocumentReport from 'components/svg/DocumentReport';
 
+/**
+ * Type declaration
+ */
 export type Route = {
+  allowUsers: UserType[]
   display: {
     sidebar?: string,
     header: string
@@ -25,7 +32,11 @@ export type Route = {
   routes?: { [k: string]: Route }
 }
 
+/**
+ * Route definition
+ */
 const dashboard: Route = {
+  allowUsers: ["user", "admin"],
   display: { sidebar: "Dashboard", header: "Dashboard" },
   render: {
     url: "/",
@@ -35,6 +46,7 @@ const dashboard: Route = {
 }
 
 const myRequest: Route = {
+  allowUsers: ["user"],
   display: { sidebar: "My Request", header: "My Request" },
   render: {
     url: "/my-request",
@@ -43,10 +55,12 @@ const myRequest: Route = {
   icon: DocumentText,
   routes: {
     view: {
+      allowUsers: ["user"],
       display: { header: "Leave Request Detail" },
       render: { url: "/my-request/view/:id", component: <MyRequest.View /> }
     },
     new: {
+      allowUsers: ["user"],
       display: { header: "Leave Request Form" },
       render: { url: "/my-request/new", component: <MyRequest.New /> }
     }
@@ -54,6 +68,7 @@ const myRequest: Route = {
 }
 
 const myApprovals: Route = {
+  allowUsers: ["user"],
   display: { sidebar: "My Approvals", header: "My Approvals" },
   render: {
     url: "/my-approvals",
@@ -62,10 +77,12 @@ const myApprovals: Route = {
   icon: CheckCircle,
   routes: {
     pending: {
+      allowUsers: ["user"],
       display: { header: "Pending Request Detail" },
       render: { url: "/my-approvals/pending/:id", component: <MyApprovals.Pending /> }
     },
     approved: {
+      allowUsers: ["user"],
       display: { header: "Approved Request Detail" },
       render: { url: "/my-approvals/approved/:id", component: <MyApprovals.Approved /> }
     }
@@ -73,6 +90,7 @@ const myApprovals: Route = {
 }
 
 const activityLog: Route = {
+  allowUsers: ["user"],
   display: { sidebar: "Activity Logs", header: "Activity Logs" },
   render: {
     url: "/activity-log",
@@ -82,6 +100,7 @@ const activityLog: Route = {
 }
 
 const myLeaveBal: Route = {
+  allowUsers: ["user"],
   display: { sidebar: "My Leave Balance", header: "My Leave Balance" },
   render: {
     url: "/my-leave-balance",
@@ -91,11 +110,13 @@ const myLeaveBal: Route = {
 }
 
 const settings: Route = {
+  allowUsers: ["admin"],
   display: { sidebar: "Settings", header: "Settings" },
   render: { url: "/settings" },
   icon: Gear,
   routes: {
     general: {
+      allowUsers: ["admin"],
       display: { sidebar: "General", header: "General" },
       render: {
         url: "/settings/general",
@@ -103,6 +124,7 @@ const settings: Route = {
       }
     },
     working: {
+      allowUsers: ["admin"],
       display: { sidebar: "Working Day", header: "Working Day" },
       render: {
         url: "/settings/working",
@@ -112,13 +134,20 @@ const settings: Route = {
   }
 }
 
-const routes: { [k: string]: Route } = {
+const error: Route = {
+  allowUsers: ["admin", "user"],
+  display: { header: "404" },
+  render: { url: "/404", component: <Error404 /> },
+}
+
+const routes = {
   dashboard,
   myRequest,
   myApprovals,
   activityLog,
   myLeaveBal,
-  settings
+  settings,
+  error
 }
 
 export default routes;

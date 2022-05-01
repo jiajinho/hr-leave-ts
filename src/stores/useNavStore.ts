@@ -2,7 +2,7 @@ import create from "zustand";
 
 import type { Route } from '../config/routes';
 
-type NavStore = {
+type StoreSchema = {
   navigate: ((r: Route, url?: string) => void) | undefined,
   setNavigate: (fn: (r: Route, url?: string) => void) => void,
 
@@ -10,7 +10,7 @@ type NavStore = {
   setCurrentRoute: (c: Route) => void
 }
 
-export default create<NavStore>(set => ({
+export default create<StoreSchema>(set => ({
   navigate: undefined,
   setNavigate: fn => set({ navigate: fn }),
 
