@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import locale from 'locale';
+
 import { Wrapper as _Wrapper, Title, Stripe } from '../styled';
-import Button from '../../../lib/Button';
-import _Button from '../../../lib/Button/styled';
+import Button from 'components/lib/Button';
+import _Button from 'components/lib/Button/styled';
 
 const Wrapper = styled(_Wrapper)`
   display: flex;
@@ -18,9 +20,10 @@ export const Number = styled.p`
   align-self: center;
 `;
 
-export default ({ title, number }: {
+export default ({ title, number, onClick }: {
   title: string,
-  number: number
+  number: number,
+  onClick?: () => void
 }) => {
   return (
     <Wrapper>
@@ -33,8 +36,8 @@ export default ({ title, number }: {
         {number}
       </Number>
 
-      <Button.Classic>
-        View Details
+      <Button.Classic onClick={onClick}>
+        {locale.en.common.button.viewDetail}
       </Button.Classic>
     </Wrapper>
   )
