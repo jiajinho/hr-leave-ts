@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 import { Row, Column } from './types';
 
-import Pagination, { Wrapper as _Pagination } from './components/Pagination';
+import Pagination, { Wrapper as _Pagination } from './Pagination';
 
 export const Wrapper = styled.div`
   --padding-left: 20rem;

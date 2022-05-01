@@ -14,9 +14,10 @@ export const Wrapper = styled(Style)`
   }
 `;
 
-export default ({ children, SVGElement }: {
+export default ({ children, SVGElement, onClick }: {
   children: string,
-  SVGElement?: ({ color }: { color?: string }) => JSX.Element
+  SVGElement?: ({ color }: { color?: string }) => JSX.Element,
+  onClick?: () => void
 }) => {
   const [isHover, setHover] = useState(false);
 
@@ -27,6 +28,7 @@ export default ({ children, SVGElement }: {
 
   return (
     <Wrapper
+      onClick={onClick}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >

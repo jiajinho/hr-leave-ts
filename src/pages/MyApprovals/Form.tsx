@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 import locale from 'locale';
 
-import X, { Wrapper as _X } from 'components/svg/X';
+import XWithRing, { Wrapper as _XWithRing } from 'components/svg/XWithRing';
 import Label from 'components/lib/Label';
 import Input from 'components/lib/Input';
 import DateRangePicker from 'components/common/DateRangePicker';
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 25rem;
 
-  & > ${_X} {
+  & > ${_XWithRing} {
     position: absolute;
     top: 12rem;
     right: 12rem;
@@ -88,9 +88,8 @@ export default ({ readOnly = false, defaults }: {
 
   return (
     <Wrapper>
-      <X
+      <XWithRing
         color="var(--primary-color)"
-        hasRing
         onClick={() => console.log("clickedX!")}
       />
 

@@ -1,4 +1,4 @@
-import type { Type as UserType } from 'types/user';
+import type { Type as UserType } from 'stores/useUserStore';
 
 import Dashboard from 'pages/Dashboard';
 import MyRequest from 'pages/MyRequest';
@@ -7,6 +7,7 @@ import Settings from 'pages/Settings';
 import MyApprovals from 'pages/MyApprovals';
 import ActivityLog from 'pages/ActivityLog';
 import Error404 from 'pages/Error404';
+import Users from 'pages/Users';
 
 import Home from 'components/svg/Home';
 import DocumentText from 'components/svg/DocumentText';
@@ -14,12 +15,13 @@ import Gear from 'components/svg/Gear';
 import Database from 'components/svg/Database';
 import CheckCircle from 'components/svg/CheckCircle';
 import DocumentReport from 'components/svg/DocumentReport';
+import User from 'components/svg/User';
 
 /**
  * Type declaration
  */
 export type Route = {
-  allowUsers: UserType[]
+  allowUsers?: UserType[]
   display: {
     sidebar?: string,
     header: string
@@ -109,6 +111,28 @@ const myLeaveBal: Route = {
   icon: Database
 }
 
+const users: Route = {
+  allowUsers: ["admin"],
+  display: { sidebar: "Users", header: "Users" },
+  render: {
+    url: "/users",
+    component: <Users.Main />
+  },
+  icon: User,
+  routes: {
+    new: {
+      allowUsers: ["admin"],
+      display: { header: "New User Page" },
+      render: { url: "/users/new", component: <Users.New /> }
+    },
+    edit: {
+      allowUsers: ["admin"],
+      display: { header: "User Information" },
+      render: { url: "/users/edit/:id", component: <Users.Edit /> }
+    }
+  }
+}
+
 const settings: Route = {
   allowUsers: ["admin"],
   display: { sidebar: "Settings", header: "Settings" },
@@ -135,18 +159,21 @@ const settings: Route = {
 }
 
 const error: Route = {
-  allowUsers: ["admin", "user"],
   display: { header: "404" },
   render: { url: "/404", component: <Error404 /> },
 }
 
 const routes = {
   dashboard,
+
   myRequest,
   myApprovals,
   activityLog,
   myLeaveBal,
+
   settings,
+  users,
+
   error
 }
 

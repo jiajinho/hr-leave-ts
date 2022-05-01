@@ -5,7 +5,7 @@ import { DropdownList } from 'react-widgets/cjs';
 
 import locale from 'locale';
 
-import X, { Wrapper as _X } from 'components/svg/X';
+import XWithRing, { Wrapper as _XWithRing } from 'components/svg/XWithRing';
 import Label from 'components/lib/Label';
 import Button from 'components/lib/Button';
 import _Button from 'components/lib/Button/styled';
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 25rem;
 
-  & > ${_X} { 
+  & > ${_XWithRing} { 
     position: absolute;
     top: 12rem;
     right: 12rem;
@@ -53,9 +53,8 @@ export default () => {
 
   return (
     <Wrapper>
-      <X
+      <XWithRing
         color="var(--primary-color)"
-        hasRing
         onClick={() => navigate(-1)}
       />
 

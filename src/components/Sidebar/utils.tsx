@@ -1,7 +1,7 @@
 import React from "react";
 
 import type { Route as RouteType } from "../../config/routes";
-import type { Type as UserType } from "types/user";
+import type { Type as UserType } from "stores/useUserStore";
 
 import useNavStore from "../../stores/useNavStore";
 import useUserStore from "stores/useUserStore";
@@ -9,9 +9,9 @@ import useUserStore from "stores/useUserStore";
 import Accordion from "./components/Accordion";
 
 function checkIsRenderable(item: RouteType, userType: UserType): boolean {
-  if (!item.display.sidebar) {
-    return false;
-  }
+  if (!item.display.sidebar) return false;
+
+  if (!item.allowUsers) return true;
 
   return item.allowUsers.includes(userType);
 }

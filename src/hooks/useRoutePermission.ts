@@ -15,6 +15,7 @@ export default () => {
     if (
       navigate &&
       currentRoute &&
+      currentRoute.allowUsers &&
       !currentRoute.allowUsers.includes(userType)
     ) {
       navigate(routes.error);

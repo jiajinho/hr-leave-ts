@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import type { User } from 'pages/MyApprovals/types';
+import type { Option } from 'components/common/PrunableRadio';
 import { Column } from 'components/lib/Table/types';
 
-import PrunableRadio, { Option } from 'components/common/PrunableRadio';
+import PrunableRadio from 'components/common/PrunableRadio';
 import SearchInput from 'components/common/SearchInput';
 import Table, { Header as _Table_Header, Cell as _Table_Cell } from 'components/lib/Table';
-import { Route } from 'config/routes';
 
 export const Wrapper = styled.div`
   background: var(--container-bg-color);

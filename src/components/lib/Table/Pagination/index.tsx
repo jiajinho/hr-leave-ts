@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import CaretDownSlim, { Wrapper as _CaretDownSlim } from '../../../../svg/CaretDownSlim';
+import CaretDownSlim, { Wrapper as _CaretDownSlim } from 'components/svg/CaretDownSlim';
 import usePagination, { delimiter } from './usePagination';
 
 export const Wrapper = styled.div`
@@ -25,7 +25,8 @@ const Box = styled.div(({ $active = false }: { $active?: boolean }) => `
   ${$active ? `
   border-color: var(--primary-color);
   border-width: 2rem;
-  color: var(--primary-color);
+  color: white;
+  background: var(--primary-color);
   font-weight: 600;
   ` : ''}
 `);

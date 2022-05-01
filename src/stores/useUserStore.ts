@@ -1,5 +1,6 @@
 import create from "zustand";
-import type { Type } from 'types/user';
+
+export type Type = "admin" | "user";
 
 type StoreSchema = {
   type: Type,

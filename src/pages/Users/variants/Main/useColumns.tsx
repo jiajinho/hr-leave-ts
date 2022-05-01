@@ -3,39 +3,37 @@ import styled from 'styled-components/macro';
 
 import type { User } from '../../types';
 import type { Column } from 'components/lib/Table/types';
-
-import type { Route } from 'config/routes';
-import useNavStore from 'stores/useNavStore';
+import routes from 'config/routes';
 import { fillRouteParam } from 'utils';
 
 import Username from 'components/lib/Table/plugins/Username';
-import DateTime from 'components/lib/Table/plugins/DateTime';
-import LeaveDuration from 'components/lib/Table/plugins/LeaveDuration';
-import Vertical3Dot, { Wrapper as _Vertical3Dot } from 'components/svg/Vertical3Dot';
+import EditPen, { Wrapper as _EditPen } from 'components/svg/EditPen';
+import UserRemove, { Wrapper as _UserRemove } from 'components/svg/UserRemove';
+import useNavStore from 'stores/useNavStore';
 
-const MoreDetails = styled.div`
+const ActionCell = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-
-  & > div {
-    padding: 7rem;
-    margin: 0 20rem;
+  gap: 13rem;
+    
+  ${_EditPen}, ${_UserRemove} {
+    height: 22rem;
     cursor: pointer;
   }
-
-  ${_Vertical3Dot} { height: 13rem }
 `;
 
-export default (route: Route) => {
+export default (openRevokeModal: (r: User) => void) => {
   const navigate = useNavStore(state => state.navigate);
 
   const [columns, setColumns] = useState<Column<User>[]>([]);
 
-  const handleDetailClick = (r: User) => {
+  const handleEditClick = (r: User) => {
+    const route = routes.users.routes!.edit;
+
     if (navigate && route.render) {
       const url = fillRouteParam(
-        route.render.url,
+        route.render!.url,
         [{ param: 'id', value: r.id }]
       );
 
@@ -46,7 +44,7 @@ export default (route: Route) => {
   useEffect(() => {
     const columns: Column<User>[] = [
       {
-        title: "Username",
+        title: "Name",
         render: r => (
           <Username
             imgUrl={r.thumbnail}
@@ -55,35 +53,38 @@ export default (route: Route) => {
         )
       },
       {
-        title: "Leave Type",
-        render: r => r.type
+        title: "Department",
+        render: r => r.department
       },
       {
-        title: "Start Time",
-        render: r => <DateTime epoch={r.start} />
+        title: "Supervisor",
+        render: r => r.supervisor
       },
       {
-        title: "End Time",
-        render: r => <DateTime epoch={r.end} />
+        title: "Email",
+        render: r => r.email
       },
       {
-        title: "Leave Duration",
-        render: r => <LeaveDuration duration={r.duration} />
+        title: "Phone No.",
+        render: r => r.phoneNo
+      },
+      {
+        title: "Status",
+        render: r => r.status
       },
       {
         title: "",
         render: r => (
-          <MoreDetails>
-            <div onClick={() => handleDetailClick(r)}>
-              <Vertical3Dot />
-            </div>
-          </MoreDetails>
+          <ActionCell>
+            <EditPen onClick={() => handleEditClick(r)} />
+            <UserRemove onClick={() => openRevokeModal(r)} />
+          </ActionCell>
         )
       }
     ];
 
     setColumns(columns);
-  }, [navigate]);
+  }, []);
 
   return columns;
 }
