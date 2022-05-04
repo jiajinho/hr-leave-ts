@@ -35,12 +35,13 @@ const Square = styled.div(({ $background }: { $background: string }) => `
   background: ${$background};
 `);
 
-export default ({ legends }: {
-  legends: Leave[]
+export default ({ legends, onViewClick }: {
+  legends: Leave[],
+  onViewClick?: () => void
 }) => {
   return (
     <Wrapper>
-      <Button.Classic>
+      <Button.Classic onClick={onViewClick}>
         {locale.en.common.button.viewDetail}
       </Button.Classic>
 

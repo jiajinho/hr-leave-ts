@@ -65,6 +65,11 @@ const myRequest: Route = {
       allowUsers: ["user"],
       display: { header: "Leave Request Form" },
       render: { url: "/my-request/new", component: <MyRequest.New /> }
+    },
+    calendar: {
+      allowUsers: ["user"],
+      display: { header: "Leave Approval Form" },
+      render: { url: "/my-request/calendar/:id", component: <MyRequest.Calendar /> }
     }
   }
 }
@@ -159,7 +164,7 @@ const settings: Route = {
 }
 
 const error: Route = {
-  display: { header: "404" },
+  display: { header: "Error 404" },
   render: { url: "/404", component: <Error404 /> },
 }
 

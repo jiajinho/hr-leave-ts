@@ -4,12 +4,15 @@ import { useParams } from 'react-router-dom';
 
 import type { Schema } from 'pages/MyRequest/types';
 import locale from 'locale';
+import routes from 'config/routes';
+import { fillRouteParam } from 'utils';
 
 import mock from 'pages/MyRequest/mock-data';
 
 import Form, { Wrapper as _Form } from './Form';
 import Card from 'components/common/Card';
 import { Wrapper as _Card } from 'components/common/Card/styled';
+import useNavStore from 'stores/useNavStore';
 
 const Wrapper = styled.div`
   position: relative;
@@ -30,8 +33,13 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
+  /**
+   * Hooks
+   */
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<Schema>();
+
+  const navigate = useNavStore(state => state.navigate);
 
   useEffect(() => {
     let dataExist = false;
@@ -47,8 +55,25 @@ export default () => {
     !dataExist && setData(undefined);
   }, [id]);
 
+  /**
+   * Not hook
+   */
+  const handleViewClick = () => {
+    const route = routes.myRequest.routes!.calendar;
 
+    if (id && navigate) {
+      const url = fillRouteParam(
+        route.render.url,
+        [{ param: "id", value: id }]
+      );
 
+      navigate(route, url);
+    }
+  }
+
+  /**
+   * Render
+   */
   return (
     <Wrapper>
       {data &&
@@ -73,6 +98,7 @@ export default () => {
           { legend: "Casual Leave", color: "blue", percentage: 10 },
           { legend: "Annual Leave", color: "green", percentage: 10 }
         ]}
+        onViewClick={handleViewClick}
       />
     </Wrapper>
   )

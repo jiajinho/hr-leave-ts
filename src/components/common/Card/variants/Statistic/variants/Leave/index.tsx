@@ -29,11 +29,12 @@ const ProgressContainer = styled.div`
   }
 `;
 
-export default ({ title, consumed, remaining, leaves }: {
+export default ({ title, consumed, remaining, leaves, onViewClick }: {
   title: string,
   consumed: string,
   remaining: string,
-  leaves: Leave[]
+  leaves: Leave[],
+  onViewClick?: () => void
 }) => {
   return (
     <Wrapper>
@@ -52,7 +53,10 @@ export default ({ title, consumed, remaining, leaves }: {
         </ProgressContainer>
       </Body>
 
-      <Footer legends={leaves} />
+      <Footer
+        legends={leaves}
+        onViewClick={onViewClick}
+      />
     </Wrapper>
   );
 }
