@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import mock from './mock-data';
@@ -36,9 +36,14 @@ export default () => {
 
   const columns = useColumns();
 
+  const [month, setMonth] = useState<Date>();
+
   return (
     <Wrapper>
-      <MonthPicker />
+      <MonthPicker
+        value={month}
+        onChange={setMonth}
+      />
 
       <Table
         data={mock}

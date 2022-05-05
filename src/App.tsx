@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Routes, useNavigate, useLocation } from 'react-router-dom';
+import { useControls } from 'leva';
 
 import type { Route as RouteType } from './config/routes';
 
@@ -58,6 +59,10 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { admin } = useControls({
+    admin: true
+  });
+
   //stores
   const setNavigate = useNavStore(state => state.setNavigate);
   const setCurrentRoute = useNavStore(state => state.setCurrentRoute);
@@ -84,8 +89,9 @@ function App() {
   }, [navigate]);
 
   useEffect(() => {
-    setUserType("admin");
-  }, []);
+    if (admin) setUserType("admin");
+    else setUserType("user");
+  }, [admin]);
 
   useRoutePermission();
 

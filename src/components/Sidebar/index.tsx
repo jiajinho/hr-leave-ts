@@ -9,6 +9,7 @@ import { generateAccordion } from './utils';
 import Logout from 'components/svg/Logout';
 import Accordion, { Wrapper as _Accordion, Title as _Accordion_Title } from './components/Accordion';
 import Logo, { Wrapper as _Logo } from './components/Logo';
+import useUserStore from 'stores/useUserStore';
 
 export const Wrapper = styled.div`
   --top-level-accordion-margin: 8rem;
@@ -54,12 +55,13 @@ const Nav = styled.div`
 export default () => {
   const navigate = useNavStore(state => state.navigate);
   const currentRoute = useNavStore(state => state.currentRoute);
+  const userType = useUserStore(state => state.type);
 
   const nodes = useMemo(() => {
     if (navigate) {
       return generateAccordion(routes);
     }
-  }, [navigate, currentRoute]);
+  }, [navigate, currentRoute, userType]);
 
 
   return (

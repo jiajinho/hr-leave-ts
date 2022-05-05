@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
 const useAnimation = (
@@ -9,19 +9,12 @@ const useAnimation = (
 ) => {
   useEffect(() => {
     if (!refresh) {
-
-      gsap.timeline()
-        .to(panelRef.current, {
-          duration: 0.01,
-          opacity: 0
-        })
-        .to(panelRef.current, {
-          duration: 0.25,
-          ease: "power2.out",
-          overwrite: true,
-          height: expand ? panelHeight : "0",
-          opacity: expand ? 1 : 0
-        });
+      gsap.to(panelRef.current, {
+        duration: 0.25,
+        ease: "power2.out",
+        overwrite: true,
+        height: expand ? panelHeight : "0",
+      });
     }
   }, [panelHeight, expand]);
 
