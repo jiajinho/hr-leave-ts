@@ -4,6 +4,7 @@ import header from "./header";
 import myRequest from "./myRequest";
 import myApproval from "./myApproval";
 import users from "./users";
+import error404 from "./error404";
 
 export default {
   common,
@@ -11,5 +12,6 @@ export default {
   header,
   myRequest,
   myApproval,
-  users
+  users,
+  error404
 }
