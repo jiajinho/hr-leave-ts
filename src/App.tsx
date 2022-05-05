@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components/macro';
 import { Routes, useNavigate, useLocation, Route, Navigate } from 'react-router-dom';
 
@@ -58,13 +58,13 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const nodes = useMemo(() => generateRoute(routes, location.pathname), []);
+
   //stores
   const setNavigate = useNavStore(state => state.setNavigate);
   const setCurrentRoute = useNavStore(state => state.setCurrentRoute);
 
   const setUserType = useUserStore(state => state.setType);
-
-  const [nodes, setNodes] = useState<React.ReactNode[]>([]);
 
   useFixRoute();
 
@@ -78,9 +78,6 @@ function App() {
         navigate(url);
       }
     });
-
-    //Set Route nodes
-    setNodes(generateRoute(routes, location.pathname));
   }, [navigate]);
 
   useEffect(() => {
