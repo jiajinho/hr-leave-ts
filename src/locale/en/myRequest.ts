@@ -6,5 +6,7 @@ export default {
 
   approver: "Approver",
   status: "Status",
-  recipient: "Recipient"
+  recipient: "Recipient",
+
+  schedules: "Schedules"
 }

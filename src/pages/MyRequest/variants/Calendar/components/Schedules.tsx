@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { format } from 'date-fns';
+
+import locale from 'locale';
 
 const Wrapper = styled.div`
-  width: 250rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  width: 300rem;
   padding: 25rem 20rem;
 
-  background: #f001;
-
+  border-left: 2rem solid #eee;
 `;
 
 const Title = styled.h4`
@@ -20,19 +25,20 @@ const Date = styled.p`
   font-size: 12rem;
 `;
 
-export default () => {
+export default ({ date }: {
+  date: Date
+}) => {
 
 
   return (
     <Wrapper>
       <Title>
-        Schedules
+        {locale.en.myRequest.schedules}
       </Title>
 
       <Date>
-        asd
+        {format(date, "MMMM d, EEEE")}
       </Date>
-
     </Wrapper>
   );
 }

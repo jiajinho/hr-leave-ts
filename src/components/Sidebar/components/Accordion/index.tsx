@@ -61,7 +61,7 @@ const normalize = (panelHeight: number) => `${panelHeight}rem`;
 
 const Accordion = ({
   title,
-  children,
+  children = [],
   SVGElement,
   onClick,
   active = false,
@@ -90,7 +90,7 @@ const Accordion = ({
   useEffect(() => {
     panelRef.current!.style.height = "unset";
     setRefresh(true);
-  }, [children]);
+  }, [children.length]);
 
   useEffect(() => {
     if (refresh) {

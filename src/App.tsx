@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components/macro';
-import { Routes, useNavigate, useLocation, Route, Navigate } from 'react-router-dom';
+import { Routes, useLocation, Route, Navigate } from 'react-router-dom';
 import { useControls } from 'leva';
-
-import type { Route as RouteType } from './config/routes';
 
 import routes from './config/routes';
 import { generateRoute } from './utils';
-import useNavStore from './stores/useNavStore';
 import useUserStore from 'stores/useUserStore';
 import useFixRoute from 'hooks/useFixRoute';
+import useRoutePermission from 'hooks/useRoutePermission';
+import useSetupNavStore from 'hooks/useSetupNavStore';
 
 import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
-import useRoutePermission from 'hooks/useRoutePermission';
 
 const Wrapper = styled.main`
   --split-threshold: 210rem;
@@ -56,33 +54,26 @@ function App() {
    * Hooks
    */
   //react-router-dom
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const nodes = useMemo(() => generateRoute(routes, location.pathname), []);
+  const { admin } = useControls({
+    admin: false
+  });
 
-  //stores
-  const setNavigate = useNavStore(state => state.setNavigate);
-  const setCurrentRoute = useNavStore(state => state.setCurrentRoute);
+  const nodes = useMemo(() => generateRoute(routes, location.pathname), []);
 
   const setUserType = useUserStore(state => state.setType);
 
   useFixRoute();
 
-  useEffect(() => {
-    //Setup Nav
-    setNavigate((r: RouteType, overwriteUrl?: string) => {
-      if (r.render?.url) {
-        setCurrentRoute(r);
-
-        const url = overwriteUrl ? overwriteUrl : r.render.url;
-        navigate(url);
-      }
-    });
-  }, [navigate]);
-
+  useSetupNavStore();
 
   useRoutePermission();
+
+  useEffect(() => {
+    setUserType(admin ? "admin" : "user");
+  }, [admin]);
+
 
   /**
    * Render
