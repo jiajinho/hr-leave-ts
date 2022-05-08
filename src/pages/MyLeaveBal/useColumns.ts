@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import type { Schema } from './types';
 import type { Column } from 'components/lib/Table/types';
 
-
-
 export default () => {
   const [columns, setColumns] = useState<Column<Schema>[]>([]);
 

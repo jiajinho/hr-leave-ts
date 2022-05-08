@@ -1,55 +1,51 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-import mock from './mock-data';
 import useColumns from './useColumns';
+import mock from '../../mock-data';
+
 
 import MonthYearPicker, {
   Wrapper as _MonthYearPicker,
   CalendarContainer as _MonthYearPicker__CalendarContainer
 } from 'components/common/MonthYearPicker';
 
-import Table, { Wrapper as _Table } from 'components/lib/Table';
-
+import Table from 'components/lib/Table';
+import { Schema } from '../../types';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: end;
-  gap: 20rem;
 
-  ${_MonthYearPicker} { width: 170rem }
+  ${_MonthYearPicker} { align-self: end }
 
   ${_MonthYearPicker__CalendarContainer} {
-    right: 0;
     left: unset;
+    right: 0;
   }
+`;
 
-  ${_Table} {
-    background: var(--container-bg-color);
-    border-radius: var(--container-border-radius);
-    padding: var(--container-padding);
-  }
+const Container = styled.div`
 `;
 
 export default () => {
 
-  const columns = useColumns();
+  const [date, setDate] = useState(new Date());
 
-  const [month, setMonth] = useState<Date>();
+  const columns = useColumns();
 
   return (
     <Wrapper>
       <MonthYearPicker
-        level="month"
-        value={month}
-        onChange={setMonth}
+        level="year"
+        value={date}
+        onChange={setDate}
       />
 
-      <Table
-        data={mock}
+      <Table<Schema>
         columns={columns}
-        pageSize={5}
+        data={mock}
+        pageSize={10}
       />
     </Wrapper>
   );

@@ -6,7 +6,7 @@ import mock from '../mock-data';
 import SearchInput from 'components/common/SearchInput';
 import Button from 'components/lib/Button';
 import PrunableRadio from 'components/common/PrunableRadio';
-import MonthPicker, { CalendarContainer as _MonthPicker_CalendarContainer } from 'components/common/MonthPicker';
+import MonthYearPicker, { CalendarContainer as _MonthYearPicker__CalendarContainer } from 'components/common/MonthYearPicker';
 
 const Wrapper = styled.header`
   --gap: 10rem;
@@ -33,7 +33,7 @@ const Bottom = styled.div`
     gap: var(--gap);
   }
 
-  ${_MonthPicker_CalendarContainer} {
+  ${_MonthYearPicker__CalendarContainer} {
     left: unset;
     right: 0;
   }
@@ -61,7 +61,8 @@ export default ({ date, setDate }: {
           <PrunableRadio options={mock.departments} max={4} />
         </div>
 
-        <MonthPicker
+        <MonthYearPicker
+          level="month"
           value={date}
           onChange={setDate}
         />

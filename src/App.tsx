@@ -57,7 +57,7 @@ function App() {
   const location = useLocation();
 
   const { admin } = useControls({
-    admin: false
+    admin: true
   });
 
   const nodes = useMemo(() => generateRoute(routes, location.pathname), []);

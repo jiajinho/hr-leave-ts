@@ -7,7 +7,16 @@ import datetime from 'config/datetime';
 import useDropdown from 'hooks/animation/useDropdown';
 import CaretDown, { Wrapper as _CaretDown } from 'components/svg/CaretDown';
 
-export const Wrapper = styled.div(({ $expand }: { $expand: boolean }) => `
+type View = 'month' | 'year' | 'decade' | 'century';
+type Level = 'month' | 'year';
+
+export const Wrapper = styled.div(({
+  $expand,
+  $level
+}: {
+  $expand: boolean,
+  $level: Level
+}) => `
   position: relative;
   border-radius: 4px;
   outline: none;
@@ -17,6 +26,10 @@ export const Wrapper = styled.div(({ $expand }: { $expand: boolean }) => `
 
   ${$expand ? `
     border-color: var(--primary-color);
+  `: ''}
+
+  ${$level ? `
+    width: 90rem;
   `: ''}
 
   ${_CaretDown} {
@@ -54,16 +67,23 @@ export const CalendarContainer = styled.div`
   width: 20em;
 `;
 
-export default ({ value, onChange }: {
+export default ({ level, value, onChange }: {
+  level: Level,
   value?: Date,
   onChange?: (d: Date) => void
 }) => {
+  /**
+   * Hooks
+   */
   const calendar = useRef<HTMLDivElement>(null);
 
   const [expand, setExpand] = useState(false);
 
   useDropdown(calendar, expand, setExpand);
 
+  /**
+   * Not hook
+   */
   const handleInputClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setExpand(!expand);
@@ -74,27 +94,41 @@ export default ({ value, onChange }: {
     setExpand(false);
   }
 
-  const inputValue = value ?
-    format(value, datetime.format.monthPicker) : "";
+  const views: View[] = ['decade', 'century'];
+  if (level === "month") {
+    views.unshift('year');
+  }
 
+  let inputValue = "";
+  if (value && level === "month") {
+    inputValue = format(value, datetime.format.monthPicker);
+  }
+  else if (value && level === "year") {
+    inputValue = format(value, datetime.format.yearPicker);
+  }
+
+  /**
+   * Render
+   */
   return (
-    <Wrapper $expand={expand}>
+    <Wrapper
+      $expand={expand}
+      $level={level}
+    >
       <Input
         onClick={handleInputClick}
         value={inputValue}
         readOnly
       />
 
-      <CaretDown
-        color="var(--primary-color)"
-      />
+      <CaretDown color="var(--primary-color)" />
 
       <CalendarContainer
         ref={calendar}
         onClick={e => e.stopPropagation()}
       >
         <Calendar
-          views={['year', 'decade', 'century']}
+          views={views}
           onChange={handleCalendarChange}
         />
       </CalendarContainer>

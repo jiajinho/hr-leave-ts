@@ -159,6 +159,32 @@ const settings: Route = {
         url: "/settings/working",
         component: <Settings.WorkingDay />
       }
+    },
+    holiday: {
+      allowUsers: ["admin"],
+      display: { sidebar: "Define Holidays", header: "Public Holidays" },
+      render: {
+        url: "/settings/holidays",
+        component: <Settings.Holiday.Main />
+      },
+      routes: {
+        new: {
+          allowUsers: ["admin"],
+          display: { header: "New Holiday Form" },
+          render: {
+            url: "/settings/holidays/new",
+            component: <Settings.Holiday.Form />
+          }
+        },
+        edit: {
+          allowUsers: ["admin"],
+          display: { header: "Edit Holiday Form" },
+          render: {
+            url: "/settings/holidays/edit/:id",
+            component: <Settings.Holiday.Form />
+          }
+        }
+      }
     }
   }
 }
