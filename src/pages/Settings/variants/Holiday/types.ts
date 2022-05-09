@@ -1,4 +1,4 @@
-export type Schema = {
+export type Holiday = {
   id: string,
   name: string,
   duration: number,

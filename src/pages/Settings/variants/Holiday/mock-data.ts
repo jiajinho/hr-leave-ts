@@ -1,6 +1,6 @@
-import type { Schema } from "./types";
+import type { Holiday } from "./types";
 
-const data: Schema[] = [
+const data: Holiday[] = [
   {
     id: '8cc8f69d-194a-430e-b3b2-470a452e4a72',
     name: 'Chinese New Year',
@@ -23,7 +23,7 @@ const data: Schema[] = [
     duration: 1,
     start: 1652006076,
     end: 1652006076,
-    description: "Labour's Day"
+    description: "This is intentionally a long description to showcase a certain UI behavior"
   },
   {
     id: '65f2bfdc-8817-4a5e-9bc1-c0c6857673db',

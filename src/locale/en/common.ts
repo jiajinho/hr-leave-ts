@@ -8,7 +8,9 @@ export default {
     submit: "Submit",
     send: "Send",
     cancel: "Cancel",
-    viewDetail: "View Details"
+    viewDetail: "View Details",
+    new: "New",
+    delete: "Delete"
   },
   statCard: {
     consumed: "Consumed",

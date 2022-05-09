@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
-import type { Schema } from '../../types';
+import locale from 'locale';
+import type { Holiday } from '../../types';
 import type { Column } from 'components/lib/Table/types';
 
 import DateTime from 'components/lib/Table/plugins/DateTime';
 import LeaveDuration from 'components/lib/Table/plugins/LeaveDuration';
 import Button from 'components/lib/Button';
 
-import EditPen from 'components/svg/EditPen';
-import Trash from 'components/svg/Trash';
+import EditPen, { Wrapper as _EditPen } from 'components/svg/EditPen';
+import Trash, { Wrapper as _Trash } from 'components/svg/Trash';
 
-const MoreDetails = styled.div`
+const ActionCell = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 13rem;
+
+  ${_EditPen}, ${_Trash} {
+    height: 22rem;
+    cursor: pointer;
+  }
 `;
 
-export default () => {
+export default (openDeleteModal: (h: Holiday) => void) => {
 
-  const [columns, setColumns] = useState<Column<Schema>[]>([]);
+  const [columns, setColumns] = useState<Column<Holiday>[]>([]);
 
   useEffect(() => {
-    const columns: Column<Schema>[] = [
+    const columns: Column<Holiday>[] = [
       {
         title: "Event",
         render: r => r.name
@@ -41,12 +51,16 @@ export default () => {
         render: r => r.description
       },
       {
-        title: <Button.Ghost>asd</Button.Ghost>,
+        title: (
+          <Button.Ghost>
+            {locale.en.common.button.new}
+          </Button.Ghost>
+        ),
         render: r => (
-          <MoreDetails>
+          <ActionCell>
             <EditPen />
-            <Trash />
-          </MoreDetails>
+            <Trash onClick={() => openDeleteModal(r)} />
+          </ActionCell>
         )
       }
     ];
