@@ -1,32 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
-export const Wrapper = styled.input`
+export const Wrapper = styled.div(({ $focus }: {
+  $focus: boolean
+}) => `
   width: 100%;
   padding: 7rem 15rem;
-  
-  outline: none;
+
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+
   border-radius: 4rem;
   border: 1rem solid #ccc;
-  font-family: var(--font-family);
-
+  background: white;
+  
   transition: 0.25s border-color;
 
-  &:focus {
-    border-color: var(--primary-color);
-  }
+  border-color: ${$focus ?
+    "var(--primary-color)" :
+    "#ccc"
+  };
+`);
+
+export const Input = styled.input`
+  width: 100%;
+
+  outline: none;
+  border: none;
+  font-family: var(--font-family);
 `;
 
-export default ({ value, placeholder, onChange, readOnly = false }: {
+export default ({
+  value,
+  placeholder,
+  onChange,
+  readOnly = false,
+  icon
+}: {
   value?: string,
   placeholder?: string
   onChange?: (s: string) => void,
-  readOnly?: boolean
-}) => (
-  <Wrapper
-    value={value}
-    placeholder={placeholder}
-    onChange={e => onChange && onChange(e.currentTarget.value)}
-    readOnly={readOnly}
-  />
-);
+  readOnly?: boolean,
+  icon?: JSX.Element
+}) => {
+  const [focus, setFocus] = useState(false);
+
+  return (
+    <Wrapper $focus={focus}>
+      <Input
+        value={value}
+        placeholder={placeholder}
+        onChange={e => onChange && onChange(e.currentTarget.value)}
+        readOnly={readOnly}
+
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+      />
+
+      {icon}
+    </Wrapper>
+  );
+}
