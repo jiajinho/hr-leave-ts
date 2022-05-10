@@ -173,7 +173,7 @@ const settings: Route = {
           display: { header: "New Holiday Form" },
           render: {
             url: "/settings/holidays/new",
-            component: <Settings.Holiday.Form />
+            component: <Settings.Holiday.New />
           }
         },
         edit: {
@@ -181,7 +181,7 @@ const settings: Route = {
           display: { header: "Edit Holiday Form" },
           render: {
             url: "/settings/holidays/edit/:id",
-            component: <Settings.Holiday.Form />
+            component: <Settings.Holiday.Edit />
           }
         }
       }

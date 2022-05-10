@@ -10,7 +10,10 @@ export default {
     cancel: "Cancel",
     viewDetail: "View Details",
     new: "New",
-    delete: "Delete"
+    delete: "Delete",
+    create: "Create",
+    reset: "Reset",
+    update: "Update"
   },
   statCard: {
     consumed: "Consumed",

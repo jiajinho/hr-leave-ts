@@ -33,6 +33,8 @@ const Wrapper = styled.div`
 
   ${_Table} {
     padding: var(--container-padding);
+    padding-top: 5rem;
+
     background: var(--container-bg-color);
     border-radius: var(--container-border-radius);
   }
