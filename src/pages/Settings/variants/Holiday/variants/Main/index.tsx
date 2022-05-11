@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 
 import useColumns from './useColumns';
-import { Holiday } from '../../types';
+import type { Holiday } from '../../types';
 import mock from '../../mock-data';
 
 import MonthYearPicker, {

@@ -11,6 +11,9 @@ export default {
   },
   holiday: {
     deleteDesc: "Are you sure to delete this holiday?"
+  },
+  department: {
+    deleteDesc: "Are you sure to delete '{{ 1 }}' department?"
   }
 
 }

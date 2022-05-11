@@ -187,6 +187,32 @@ const settings: Route = {
           }
         }
       }
+    },
+    department: {
+      allowUsers: ["admin"],
+      display: { sidebar: "Department", header: "Departments" },
+      render: {
+        url: "/settings/departments",
+        component: <Settings.Department.Main />
+      },
+      routes: {
+        new: {
+          allowUsers: ["admin"],
+          display: { header: "New Department" },
+          render: {
+            url: "/settings/departments/new",
+            component: <Settings.Department.New />
+          }
+        },
+        edit: {
+          allowUsers: ["admin"],
+          display: { header: "Department Details" },
+          render: {
+            url: "/settings/departments/edit/:id",
+            component: <Settings.Department.Edit />
+          }
+        }
+      }
     }
   }
 }

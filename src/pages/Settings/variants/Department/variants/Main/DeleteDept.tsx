@@ -1,14 +1,14 @@
 import React from 'react';
 
 import locale from 'locale';
-import type { Holiday } from '../../types';
+import type { Department } from '../../types';
 
 import { Wrapper, Description, ButtonGroup } from 'components/lib/Modal/styled';
 import Button from 'components/lib/Button';
 
-export default ({ setModalVisible, holiday }: {
+export default ({ setModalVisible, department }: {
   setModalVisible: (b: boolean) => void,
-  holiday?: Holiday
+  department?: Department
 }) => {
 
   const handleCancelClick = () => {
@@ -16,13 +16,19 @@ export default ({ setModalVisible, holiday }: {
   }
 
   const handleDeleteClick = () => {
-    console.log(holiday);
+    console.log(department);
+  }
+
+  let description = locale.en.settings.department.deleteDesc;
+
+  if (department) {
+    description = description.replace('{{ 1 }}', department.name);
   }
 
   return (
     <Wrapper>
       <Description>
-        {locale.en.settings.holiday.deleteDesc}
+        {description}
       </Description>
 
       <ButtonGroup>

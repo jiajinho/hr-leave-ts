@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import locale from 'locale';
 import routes from 'config/routes';
-import type { Holiday } from '../../types';
 import type { Column } from 'components/lib/Table/types';
+import type { Department } from '../../types';
 import useNavStore from 'stores/useNavStore';
 import { fillRouteParam } from 'utils';
 
-import DateTime from 'components/lib/Table/plugins/DateTime';
-import LeaveDuration from 'components/lib/Table/plugins/LeaveDuration';
 import Button from 'components/lib/Button';
 import EditPen, { Wrapper as _EditPen } from 'components/svg/EditPen';
 import Trash, { Wrapper as _Trash } from 'components/svg/Trash';
@@ -26,19 +24,19 @@ const ActionCell = styled.div`
   }
 `;
 
-export default (openDeleteModal: (h: Holiday) => void) => {
+export default (openDelDeptModal: (d: Department) => void) => {
   const navigate = useNavStore(state => state.navigate);
 
-  const [columns, setColumns] = useState<Column<Holiday>[]>([]);
+  const [columns, setColumns] = useState<Column<Department>[]>([]);
 
   const handleNewClick = () => {
-    const route = routes.settings.routes!.holiday!.routes!.new;
+    const route = routes.settings.routes!.department!.routes!.new!;
 
     navigate && navigate(route);
   }
 
-  const handleEditClick = (r: Holiday) => {
-    const route = routes.settings.routes!.holiday!.routes!.edit;
+  const handleEditClick = (r: Department) => {
+    const route = routes.settings.routes!.department!.routes!.edit!;
 
     if (navigate && route.render) {
       const url = fillRouteParam(
@@ -51,22 +49,14 @@ export default (openDeleteModal: (h: Holiday) => void) => {
   }
 
   useEffect(() => {
-    const columns: Column<Holiday>[] = [
+    const columns: Column<Department>[] = [
       {
-        title: "Event",
+        title: "Name",
         render: r => r.name
       },
       {
-        title: "Start Time",
-        render: r => <DateTime epoch={r.start} />
-      },
-      {
-        title: "End Time",
-        render: r => <DateTime epoch={r.end} />
-      },
-      {
-        title: "Duration",
-        render: r => <LeaveDuration duration={r.duration} />
+        title: "Status",
+        render: r => r.isActive ? "Active" : "Not Active"
       },
       {
         title: "Description",
@@ -81,7 +71,7 @@ export default (openDeleteModal: (h: Holiday) => void) => {
         render: r => (
           <ActionCell>
             <EditPen onClick={() => handleEditClick(r)} />
-            <Trash onClick={() => openDeleteModal(r)} />
+            <Trash onClick={() => openDelDeptModal(r)} />
           </ActionCell>
         )
       }
