@@ -8,6 +8,7 @@ import MyApprovals from 'pages/MyApprovals';
 import ActivityLog from 'pages/ActivityLog';
 import Error404 from 'pages/Error404';
 import Users from 'pages/Users';
+import PendingMod from 'pages/PendingMod';
 
 import Home from 'components/svg/Home';
 import DocumentText from 'components/svg/DocumentText';
@@ -16,6 +17,7 @@ import Database from 'components/svg/Database';
 import CheckCircle from 'components/svg/CheckCircle';
 import DocumentReport from 'components/svg/DocumentReport';
 import User from 'components/svg/User';
+import Hourglass from 'components/svg/Hourglass';
 
 /**
  * Type declaration
@@ -35,7 +37,7 @@ export type Route = {
 }
 
 /**
- * Route definition
+ * Route definitions
  */
 const dashboard: Route = {
   allowUsers: ["user", "admin"],
@@ -189,6 +191,16 @@ const settings: Route = {
   }
 }
 
+const pendingMod: Route = {
+  allowUsers: ["admin"],
+  display: { sidebar: "Pending Modifications", header: "Pending Modifications" },
+  render: {
+    url: "/pending-modifications",
+    component: <PendingMod.Main />
+  },
+  icon: Hourglass
+}
+
 const error: Route = {
   display: { header: "Error 404" },
   render: { url: "/404", component: <Error404 /> },
@@ -204,6 +216,7 @@ const routes = {
 
   settings,
   users,
+  pendingMod,
 
   error
 }
