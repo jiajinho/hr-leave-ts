@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
+import { NumberPicker } from 'react-widgets/cjs';
 
 import Button from 'components/lib/Button';
 import Label from 'components/lib/Label';
@@ -49,26 +50,27 @@ const ButtonGroup = styled.div`
 
 export default ({
   name,
-  setName,
-
   duration,
-
+  start,
+  end,
   desc,
-  setDesc,
 
   okText,
-  cancelText
+  onOk,
+  cancelText,
+  onCancel
 }: {
-  name: string,
-  setName?: (s: string) => void
-
-  duration: string,
-
-  desc: string
-  setDesc?: (s: string) => void,
+  name: [string, (s: string) => void],
+  duration: [number, (n: number) => void],
+  start: [Date | undefined | null, (d: Date | undefined | null) => void],
+  end: [Date | undefined | null, (d: Date | undefined | null) => void],
+  desc: [string, (s: string) => void],
 
   okText: string,
-  cancelText: string
+  onOk?: () => void,
+
+  cancelText: string,
+  onCancel?: () => void
 }) => {
   const navigate = useNavigate();
 
@@ -82,31 +84,37 @@ export default ({
       <FlexContainer>
         <Label title="Holiday Name">
           <Input
-            value={name}
-            onChange={s => setName && setName(s)}
+            value={name[0]}
+            onChange={name[1]}
           />
         </Label>
 
         <Label title="Total Duration">
-          <Input />
+          <NumberPicker
+            value={duration[0]}
+            onChange={n => n && duration[1](n)}
+          />
         </Label>
       </FlexContainer>
 
-      <DateRangePicker />
+      <DateRangePicker
+        start={{ value: start[0], onChange: d => start[1](d) }}
+        end={{ value: end[0], onChange: d => end[1](d) }}
+      />
 
       <Label title="Description">
         <TextArea
-          value={desc}
-          onChange={s => setDesc && setDesc(s)}
+          value={desc[0]}
+          onChange={desc[1]}
         />
       </Label>
 
       <ButtonGroup>
-        <Button.Ghost>
+        <Button.Ghost onClick={onCancel}>
           {cancelText}
         </Button.Ghost>
 
-        <Button.Classic>
+        <Button.Classic onClick={onOk}>
           {okText}
         </Button.Classic>
       </ButtonGroup>

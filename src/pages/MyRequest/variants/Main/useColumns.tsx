@@ -10,7 +10,7 @@ import useNavStore from 'stores/useNavStore';
 import DateTime from 'components/lib/Table/plugins/DateTime';
 import LeaveDuration from 'components/lib/Table/plugins/LeaveDuration';
 import Vertical3Dot, { Wrapper as _Vertical3Dot } from 'components/svg/Vertical3Dot';
-import Tag from './Tag';
+import Tag from 'components/common/Tag';
 
 const MoreDetail = styled.div`
   display: flex;

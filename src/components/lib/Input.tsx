@@ -5,7 +5,7 @@ export const Wrapper = styled.div(({ $focus }: {
   $focus: boolean
 }) => `
   width: 100%;
-  padding: 7rem 15rem;
+  padding: 8.5rem 15rem;
 
   display: flex;
   align-items: center;
@@ -29,6 +29,7 @@ export const Input = styled.input`
   outline: none;
   border: none;
   font-family: var(--font-family);
+  background: transparent;
 `;
 
 export default ({

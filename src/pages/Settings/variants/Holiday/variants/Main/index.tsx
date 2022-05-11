@@ -43,14 +43,14 @@ const Wrapper = styled.div`
 
   ${_Table__Header}:last-of-type,
   ${_Table__Cell}:last-of-type {
-    padding-left: unset;
-    width: 60rem
+    text-align: end;
+    width: 90rem;
   }
 `;
 
 export default () => {
 
-  const [date, setDate] = useState(new Date());
+  const [year, setYear] = useState(new Date());
 
   const [modalVisible, setModalVisible] = useState(false);
   const [delHoliday, setDelHoliday] = useState<Holiday>();
@@ -67,8 +67,8 @@ export default () => {
       <Wrapper>
         <MonthYearPicker
           level="year"
-          value={date}
-          onChange={setDate}
+          value={year}
+          onChange={setYear}
         />
 
         <Table<Holiday>

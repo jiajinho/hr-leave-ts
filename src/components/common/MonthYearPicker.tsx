@@ -28,7 +28,7 @@ export const Wrapper = styled.div(({
     border-color: var(--primary-color);
   `: ''}
 
-  ${$level ? `
+  ${$level === "year" ? `
     width: 90rem;
   `: ''}
 

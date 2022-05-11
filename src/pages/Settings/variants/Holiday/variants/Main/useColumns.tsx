@@ -50,8 +50,6 @@ export default (openDeleteModal: (h: Holiday) => void) => {
     }
   }
 
-
-
   useEffect(() => {
     const columns: Column<Holiday>[] = [
       {
