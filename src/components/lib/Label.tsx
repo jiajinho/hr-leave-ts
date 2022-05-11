@@ -18,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export default ({ title, children }: {
-  title: string,
+  title: string | JSX.Element,
   children: JSX.Element
 }) => (
   <Wrapper>

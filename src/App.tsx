@@ -14,7 +14,7 @@ import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
 
 const Wrapper = styled.main`
-  --split-threshold: 210rem;
+  --split-threshold: 230rem;
 
   position: relative;
   min-height: 100vh;

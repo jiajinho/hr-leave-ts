@@ -146,12 +146,12 @@ const settings: Route = {
   render: { url: "/settings" },
   icon: Gear,
   routes: {
-    general: {
+    company: {
       allowUsers: ["admin"],
-      display: { sidebar: "General", header: "General" },
+      display: { sidebar: "Company Information ", header: "Company Information" },
       render: {
-        url: "/settings/general",
-        component: <Settings.General />
+        url: "/settings/company",
+        component: <Settings.Company />
       }
     },
     working: {

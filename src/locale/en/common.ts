@@ -23,5 +23,6 @@ export default {
   prunableCheckbox: {
     pruneText: "More"
   },
+  address: "Address",
   logout: "Logout"
 }
