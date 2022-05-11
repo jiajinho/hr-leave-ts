@@ -47,7 +47,26 @@ const ButtonGroup = styled.div`
   gap: 10rem;
 `;
 
-export default ({ okText, cancelText }: {
+export default ({
+  name,
+  setName,
+
+  duration,
+
+  desc,
+  setDesc,
+
+  okText,
+  cancelText
+}: {
+  name: string,
+  setName?: (s: string) => void
+
+  duration: string,
+
+  desc: string
+  setDesc?: (s: string) => void,
+
   okText: string,
   cancelText: string
 }) => {
@@ -62,7 +81,10 @@ export default ({ okText, cancelText }: {
 
       <FlexContainer>
         <Label title="Holiday Name">
-          <Input />
+          <Input
+            value={name}
+            onChange={s => setName && setName(s)}
+          />
         </Label>
 
         <Label title="Total Duration">
@@ -73,7 +95,10 @@ export default ({ okText, cancelText }: {
       <DateRangePicker />
 
       <Label title="Description">
-        <TextArea />
+        <TextArea
+          value={desc}
+          onChange={s => setDesc && setDesc(s)}
+        />
       </Label>
 
       <ButtonGroup>
