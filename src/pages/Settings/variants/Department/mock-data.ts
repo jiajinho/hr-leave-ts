@@ -1,6 +1,6 @@
 import type { Department } from "./types";
 
-const department: Department[] = [
+const data: Department[] = [
   {
     id: "02517040-9f8d-41a0-b1e3-3f3f2c470a14",
     name: "Finance",
@@ -33,6 +33,4 @@ const department: Department[] = [
   }
 ];
 
-export default {
-  department
-}
+export default data;

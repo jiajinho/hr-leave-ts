@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
-import { NumberPicker } from 'react-widgets/cjs';
 
-import Button from 'components/lib/Button';
+import locale from 'locale';
+
 import Label from 'components/lib/Label';
 import Input from 'components/lib/Input';
 import TextArea from 'components/lib/TextArea';
-import DateRangePicker from 'components/common/DateRangePicker';
+import Button from 'components/lib/Button';
 import XWithRing, { Wrapper as _XWithRing } from 'components/svg/XWithRing';
 
 const Wrapper = styled.div`
@@ -49,28 +49,26 @@ const ButtonGroup = styled.div`
 
 export default ({
   name,
-  duration,
-  start,
-  end,
-  desc,
+
+  comments,
 
   okText,
   onOk,
+
   cancelText,
   onCancel
 }: {
   name: [string, (s: string) => void],
-  duration: [number, (n: number) => void],
-  start: [Date | undefined | null, (d: Date | undefined | null) => void],
-  end: [Date | undefined | null, (d: Date | undefined | null) => void],
-  desc: [string, (s: string) => void],
+
+  comments: [string, (s: string) => void],
 
   okText: string,
   onOk?: () => void,
 
-  cancelText: string,
+  cancelText?: string,
   onCancel?: () => void
 }) => {
+
   const navigate = useNavigate();
 
   return (
@@ -81,42 +79,36 @@ export default ({
       />
 
       <FlexContainer>
-        <Label title="Holiday Name">
+        <Label title={locale.en.settings.department.form.name}>
           <Input
             value={name[0]}
             onChange={name[1]}
           />
         </Label>
 
-        <Label title="Total Duration">
-          <NumberPicker
-            value={duration[0]}
-            onChange={n => n && duration[1](n)}
-          />
+        <Label title={locale.en.settings.department.form.status}>
+          <Input />
         </Label>
       </FlexContainer>
 
-      <DateRangePicker
-        start={{ value: start[0], onChange: d => start[1](d) }}
-        end={{ value: end[0], onChange: d => end[1](d) }}
-      />
-
-      <Label title="Description">
+      <Label title={locale.en.settings.department.form.comments}>
         <TextArea
-          value={desc[0]}
-          onChange={desc[1]}
+          value={comments[0]}
+          onChange={comments[1]}
         />
       </Label>
 
       <ButtonGroup>
-        <Button.Ghost onClick={onCancel}>
-          {cancelText}
-        </Button.Ghost>
+        {cancelText &&
+          <Button.Ghost onClick={onCancel}>
+            {cancelText}
+          </Button.Ghost>
+        }
 
         <Button.Classic onClick={onOk}>
           {okText}
         </Button.Classic>
       </ButtonGroup>
     </Wrapper>
-  )
+  );
 }

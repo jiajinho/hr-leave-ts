@@ -13,7 +13,12 @@ export default {
     deleteDesc: "Are you sure to delete this holiday?"
   },
   department: {
-    deleteDesc: "Are you sure to delete '{{ 1 }}' department?"
+    deleteDesc: "Are you sure to delete '{{ 1 }}' department?",
+    form: {
+      name: "Name",
+      status: "Status",
+      comments: "Comments"
+    }
   }
 
 }

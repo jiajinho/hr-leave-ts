@@ -25,7 +25,7 @@ export default () => {
   const [desc, setDesc] = useState("");
 
   useEffect(() => {
-    if (navigate) {
+    if (navigate && id) {
       let hasData = false;
 
       for (let i = 0; i < mock.length; i++) {
@@ -46,7 +46,7 @@ export default () => {
         navigate(route);
       }
     }
-  }, [navigate]);
+  }, [navigate, id]);
 
   /**
    * Not hook

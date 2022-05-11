@@ -47,7 +47,7 @@ export default () => {
     <>
       <Wrapper>
         <Table<Department>
-          data={mock.department}
+          data={mock}
           columns={columns}
           pageSize={5}
         />
