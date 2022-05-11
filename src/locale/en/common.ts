@@ -20,5 +20,8 @@ export default {
     remaining: "Remaining",
     leaveRecord: "Leave Record"
   },
+  prunableCheckbox: {
+    pruneText: "More"
+  },
   logout: "Logout"
 }

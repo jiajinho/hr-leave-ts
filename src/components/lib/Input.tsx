@@ -47,7 +47,12 @@ export default ({
   const [focus, setFocus] = useState(false);
 
   return (
-    <Wrapper $focus={focus}>
+    <Wrapper
+      $focus={focus}
+      tabIndex={-1}
+      onFocus={() => setFocus(true)}
+      onBlur={() => setFocus(false)}
+    >
       <Input
         value={value}
         placeholder={placeholder}

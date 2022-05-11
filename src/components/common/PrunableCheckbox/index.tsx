@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import { Option } from './types';
@@ -14,8 +14,17 @@ export default ({ options, max }: {
   options: Option[],
   max: number
 }) => {
-
   const [actives, setActives] = useState<string[]>([]);
+
+  useEffect(() => {
+    const actives = [];
+
+    for (let i = 0; i < options.length; i++) {
+      actives.push(options[i].id);
+    }
+
+    setActives(actives);
+  }, []);
 
   const visibleOptions = options.slice(0, max);
   const prunedOptions = options.slice(max);
@@ -48,7 +57,13 @@ export default ({ options, max }: {
         </Button>
       )}
 
-      <DropdownList options={prunedOptions} />
+      {prunedOptions.length > 0 &&
+        <DropdownList
+          actives={actives}
+          options={prunedOptions}
+          onSelectClick={handleButtonClick}
+        />
+      }
     </Wrapper>
   )
 }
