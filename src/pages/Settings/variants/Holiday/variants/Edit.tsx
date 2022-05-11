@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useParams, useNavigate } from 'react-router-dom';
+import { fromUnixTime } from 'date-fns';
 
 import locale from 'locale';
 import routes from 'config/routes';
-import type { Holiday } from '../types';
 import mock from '../mock-data';
 
 import Form from '../Form';
 import useNavStore from 'stores/useNavStore';
-
-const Wrapper = styled.div`
-`;
 
 export default () => {
   /**
@@ -36,6 +33,8 @@ export default () => {
         if (mock[i].id === id) {
           setName(mock[i].name);
           setDuration(mock[i].duration);
+          setStart(fromUnixTime(mock[i].start));
+          setEnd(fromUnixTime(mock[i].end));
           setDesc(mock[i].description);
 
           hasData = true;
@@ -65,20 +64,18 @@ export default () => {
    * Render
    */
   return (
-    <Wrapper>
-      <Form
-        name={[name, setName]}
-        duration={[duration, setDuration]}
-        start={[start, setStart]}
-        end={[end, setEnd]}
-        desc={[desc, setDesc]}
+    <Form
+      name={[name, setName]}
+      duration={[duration, setDuration]}
+      start={[start, setStart]}
+      end={[end, setEnd]}
+      desc={[desc, setDesc]}
 
-        okText={locale.en.common.button.update}
-        onOk={handleOk}
+      okText={locale.en.common.button.update}
+      onOk={handleOk}
 
-        cancelText={locale.en.common.button.cancel}
-        onCancel={handleCancel}
-      />
-    </Wrapper>
+      cancelText={locale.en.common.button.cancel}
+      onCancel={handleCancel}
+    />
   );
 }

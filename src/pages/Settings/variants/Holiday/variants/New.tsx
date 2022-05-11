@@ -4,9 +4,6 @@ import Form from '../Form';
 
 import locale from 'locale';
 
-const Wrapper = styled.div`
-`;
-
 export default () => {
   /**
    * Hooks
@@ -36,20 +33,18 @@ export default () => {
    * Render
    */
   return (
-    <Wrapper>
-      <Form
-        name={[name, setName]}
-        duration={[duration, setDuration]}
-        start={[start, setStart]}
-        end={[end, setEnd]}
-        desc={[desc, setDesc]}
+    <Form
+      name={[name, setName]}
+      duration={[duration, setDuration]}
+      start={[start, setStart]}
+      end={[end, setEnd]}
+      desc={[desc, setDesc]}
 
-        okText={locale.en.common.button.create}
-        onOk={handleOk}
+      okText={locale.en.common.button.create}
+      onOk={handleOk}
 
-        cancelText={locale.en.common.button.reset}
-        onCancel={handleCancel}
-      />
-    </Wrapper>
+      cancelText={locale.en.common.button.reset}
+      onCancel={handleCancel}
+    />
   )
 }
