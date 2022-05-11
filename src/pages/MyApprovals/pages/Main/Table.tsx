@@ -5,9 +5,9 @@ import type { User } from 'pages/MyApprovals/types';
 import type { Option } from 'components/common/PrunableRadio';
 import { Column } from 'components/lib/Table/types';
 
-import PrunableRadio from 'components/common/PrunableRadio';
 import SearchInput from 'components/common/SearchInput';
 import Table, { Header as _Table_Header, Cell as _Table_Cell } from 'components/lib/Table';
+import PrunableCheckbox from 'components/common/PrunableCheckbox';
 
 export const Wrapper = styled.div`
   background: var(--container-bg-color);
@@ -44,7 +44,7 @@ export default ({ title, options, users, columns }: {
       <Header>
         <Title>{title}</Title>
 
-        <PrunableRadio
+        <PrunableCheckbox
           options={options}
           max={4}
         />

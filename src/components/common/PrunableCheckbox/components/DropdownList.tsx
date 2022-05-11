@@ -60,18 +60,31 @@ export default ({ actives, options, onSelectClick }: {
   options: Option[],
   onSelectClick: (id: string) => void
 }) => {
-
+  /**
+   * Hooks
+   */
   const ref = useRef<HTMLDivElement>(null);
 
   const [expand, setExpand] = useState(false);
 
   useDropdown(ref, expand, setExpand);
 
+  /**
+   * Not hooks
+   */
   const handleWrapperClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setExpand(true);
+    setExpand(!expand);
   }
 
+  const handleSelectClick = (e: React.MouseEvent, id: string) => {
+    e.stopPropagation();
+    onSelectClick(id);
+  }
+
+  /**
+   * Render
+   */
   return (
     <Wrapper onClick={handleWrapperClick}>
       <Input
@@ -84,7 +97,7 @@ export default ({ actives, options, onSelectClick }: {
         {options.map((o, i) =>
           <Select
             key={i}
-            onClick={() => onSelectClick(o.id)}
+            onClick={e => handleSelectClick(e, o.id)}
             $active={actives.includes(o.id)}
           >
             {o.display}

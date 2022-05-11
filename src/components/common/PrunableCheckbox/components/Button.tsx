@@ -14,6 +14,9 @@ export const Wrapper = styled.div(({ $active }: {
   text-align: center;
   transition: 0.25s;
 
+  display: flex;
+  align-items: center;
+
   ${$active ? `
   background: var(--primary-color);
   color: white;

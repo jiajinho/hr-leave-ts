@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
 import Form from '../Form';
 
 import locale from 'locale';

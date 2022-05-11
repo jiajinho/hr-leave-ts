@@ -6,7 +6,6 @@ import routes from 'config/routes';
 import type { User } from '../../types';
 
 import Table, { Header as _Table_Header, Cell as _Table_Cell } from 'components/lib/Table';
-import PrunableRadio from 'components/common/PrunableRadio';
 import SearchInput from 'components/common/SearchInput';
 import UserAdd, { Wrapper as _UserAdd } from 'components/svg/UserAdd';
 import Modal from 'components/lib/Modal';
@@ -16,6 +15,7 @@ import useColumns from './useColumns';
 import RevokeAccess from './RevokeAccess';
 
 import mock from '../../mock-data';
+import PrunableCheckbox from 'components/common/PrunableCheckbox';
 
 const Wrapper = styled.div`
   background: var(--container-bg-color);
@@ -73,7 +73,7 @@ export default () => {
             {locale.en.users.title}
           </Title>
 
-          <PrunableRadio
+          <PrunableCheckbox
             options={mock.departments}
             max={4}
           />

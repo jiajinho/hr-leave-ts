@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components/macro';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fromUnixTime } from 'date-fns';
 
