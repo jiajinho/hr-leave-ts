@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
 import X, { Wrapper as _X } from 'components/svg/X';
@@ -45,6 +45,17 @@ export default ({ visible, setVisible, children }: {
   const mask = useRef<HTMLDivElement>(null);
 
   useAnimation(mask, visible);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (mask.current && e.key === "Escape") {
+        setVisible(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <Mask

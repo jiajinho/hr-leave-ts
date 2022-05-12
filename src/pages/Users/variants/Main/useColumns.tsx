@@ -48,7 +48,7 @@ export default (openRevokeModal: (r: User) => void) => {
         render: r => (
           <Username
             imgUrl={r.thumbnail}
-            name={r.name}
+            name={`${r.firstName} ${r.lastName}`}
           />
         )
       },
@@ -58,7 +58,7 @@ export default (openRevokeModal: (r: User) => void) => {
       },
       {
         title: "Supervisor",
-        render: r => r.supervisor
+        render: r => r.reportTo
       },
       {
         title: "Email",
@@ -66,7 +66,7 @@ export default (openRevokeModal: (r: User) => void) => {
       },
       {
         title: "Phone No.",
-        render: r => r.phoneNo
+        render: r => r.contactNo
       },
       {
         title: "Status",

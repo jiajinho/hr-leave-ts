@@ -1,15 +1,25 @@
-export type Department = {
-  id: string,
-  display: string
-}
-
 export type User = {
   id: string,
-  name: string,
-  department: string,
-  supervisor: string,
+  firstName: string,
+  lastName: string,
   email: string,
-  phoneNo: string,
+  contactNo: string,
+  nationalId: string,
+  dob: number,
+  department: string,
+  designation: string,
+  reportTo: string,
   status: string,
+
+  country: string,
+  stateRegion: string,
+  city: string,
+  postalCode: string,
+  address: string[],
+
+  roles: string,
+  permissions: string,
+
+  workDays: string,
   thumbnail: string
 }

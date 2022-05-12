@@ -16,7 +16,7 @@ export default ({ setModalVisible, revokeUser }: {
   }
 
   const handleRevokeClick = () => {
-    console.log(`revoke ${revokeUser?.name}`);
+    console.log(`revoke ${revokeUser?.firstName} ${revokeUser?.lastName}`);
     handleCancelClick();
   }
 
