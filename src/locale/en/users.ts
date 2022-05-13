@@ -17,10 +17,13 @@ export default {
     },
 
     contact: {
-      title: "Contact Information"
+      title: "Contact Information",
+      country: "Country",
+      stateRegion: "State/Region",
+      city: "City",
+      postalCode: "Postal Code",
     }
   },
-
 
   revoke: {
     description: "Are you sure to revoke this user access?",
