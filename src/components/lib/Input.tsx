@@ -36,16 +36,23 @@ export default ({
   value,
   placeholder,
   onChange,
+  onBlur,
   readOnly = false,
   icon
 }: {
   value?: string,
   placeholder?: string
   onChange?: (s: string) => void,
+  onBlur?: () => void,
   readOnly?: boolean,
   icon?: JSX.Element
 }) => {
   const [focus, setFocus] = useState(false);
+
+  const handleBlur = () => {
+    onBlur && onBlur();
+    setFocus(false);
+  }
 
   return (
     <Wrapper
@@ -61,7 +68,7 @@ export default ({
         readOnly={readOnly}
 
         onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        onBlur={handleBlur}
       />
 
       {icon}

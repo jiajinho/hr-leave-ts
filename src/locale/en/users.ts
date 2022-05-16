@@ -22,6 +22,21 @@ export default {
       stateRegion: "State/Region",
       city: "City",
       postalCode: "Postal Code",
+    },
+
+    others: {
+      roles: {
+        title: "Roles",
+        field: "Roles"
+      },
+      permission: {
+        title: "Additional Permissions",
+        field: "Permissions"
+      },
+      workDay: {
+        title: "Work Days",
+        field: "Work Days"
+      }
     }
   },
 

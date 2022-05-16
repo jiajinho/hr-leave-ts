@@ -5,6 +5,7 @@ import myRequest from "./myRequest";
 import myApproval from "./myApproval";
 import users from "./users";
 import settings from "./settings";
+import adjustLeave from "./adjustLeave";
 import error404 from "./error404";
 
 export default {
@@ -15,5 +16,6 @@ export default {
   myApproval,
   users,
   settings,
+  adjustLeave,
   error404
 }

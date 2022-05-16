@@ -20,5 +20,4 @@ export default {
       comments: "Comments"
     }
   }
-
 }

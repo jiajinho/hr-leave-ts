@@ -18,7 +18,7 @@ export default () => {
       </Title>
 
       <FlexContainer>
-        <Label title={locale.en.users.form.contact.city}>
+        <Label title={locale.en.users.form.contact.country}>
           <Input />
         </Label>
 

@@ -14,5 +14,5 @@ export const Description = styled.p`
 export const ButtonGroup = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20rem;
+  gap: 10rem;
 `;

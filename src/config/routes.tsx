@@ -9,6 +9,7 @@ import ActivityLog from 'pages/ActivityLog';
 import Error404 from 'pages/Error404';
 import Users from 'pages/Users';
 import PendingMod from 'pages/PendingMod';
+import AdjustLeave from 'pages/AdjustLeave';
 
 import Home from 'components/svg/Home';
 import DocumentText from 'components/svg/DocumentText';
@@ -217,6 +218,16 @@ const settings: Route = {
   }
 }
 
+const adjustLeave: Route = {
+  allowUsers: ["admin"],
+  display: { sidebar: "Adjust Leave Balance", header: "User Leave Balances" },
+  render: {
+    url: "/adjust-leave",
+    component: <AdjustLeave />
+  },
+  icon: Database
+}
+
 const pendingMod: Route = {
   allowUsers: ["admin"],
   display: { sidebar: "Pending Modifications", header: "Pending Modifications" },
@@ -242,6 +253,7 @@ const routes = {
 
   settings,
   users,
+  adjustLeave,
   pendingMod,
 
   error
