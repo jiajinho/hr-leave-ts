@@ -38,7 +38,7 @@ const InputContainer = styled.div`
   }
 `;
 
-const PlusMinusButton = styled.button`
+const AdjustButton = styled.button`
   position: relative;  
   outline: none;
   border: 1rem solid #ccc;
@@ -63,12 +63,12 @@ const PlusMinusButton = styled.button`
 `;
 
 
-export default ({ checkboxes, leave, setLeave, visible, setVisible }: {
+export default ({ checkboxes, leave, comments, setVisible, setDoubleConfirm }: {
   checkboxes: Checks,
-  leave: string,
-  setLeave: (s: string) => void,
-  visible: boolean,
-  setVisible: (b: boolean) => void
+  leave: [string, (s: string) => void],
+  comments: [string, (s: string) => void]
+  setVisible: (b: boolean) => void,
+  setDoubleConfirm: (b: boolean) => void
 }) => {
   /**
    * Hooks
@@ -83,15 +83,11 @@ export default ({ checkboxes, leave, setLeave, visible, setVisible }: {
     return list;
   }, [Object.keys(checkboxes).length]);
 
-  useEffect(() => {
-    setLeave("0");
-  }, [visible]);
-
   /**
    * Not hooks
    */
   const resolveLeave = () => {
-    const n = parseInt(leave);
+    const n = parseInt(leave[0]);
 
     if (isNaN(n)) return 0;
     else return n;
@@ -99,12 +95,12 @@ export default ({ checkboxes, leave, setLeave, visible, setVisible }: {
 
   const plusClick = () => {
     const n = resolveLeave();
-    setLeave(`${n + 1}`);
+    leave[1](`${n + 1}`);
   }
 
   const minusClick = () => {
     const n = resolveLeave();
-    setLeave(`${n - 1}`);
+    leave[1](`${n - 1}`);
   }
 
   /**
@@ -113,36 +109,41 @@ export default ({ checkboxes, leave, setLeave, visible, setVisible }: {
   return (
     <Wrapper>
       <Title>
-        {locale.en.adjustLeave.modal.title.replace("{{ 1 }}", nameList.join(", "))}
+        {locale.en.adjustLeave.modal.adjust.title
+          .replace("{{ 1 }}", nameList.join(", "))
+        }
       </Title>
 
       <InputContainer>
-        <PlusMinusButton onClick={minusClick}>
-          <span>-</span>
-        </PlusMinusButton>
+        <AdjustButton onClick={minusClick}>
+          {locale.en.adjustLeave.modal.adjust.decrement}
+        </AdjustButton>
 
         <Input
-          value={leave}
-          onChange={setLeave}
-          onBlur={() => setLeave(`${resolveLeave()}`)}
+          value={leave[0]}
+          onChange={leave[1]}
+          onBlur={() => leave[1](`${resolveLeave()}`)}
         />
 
-        <PlusMinusButton onClick={plusClick}>
-          <span>+</span>
-        </PlusMinusButton>
+        <AdjustButton onClick={plusClick}>
+          {locale.en.adjustLeave.modal.adjust.increment}
+        </AdjustButton>
       </InputContainer>
 
-      <Label title="Comments">
-        <TextArea />
+      <Label title={locale.en.adjustLeave.modal.adjust.comments}>
+        <TextArea
+          value={comments[0]}
+          onChange={comments[1]}
+        />
       </Label>
 
       <ButtonGroup>
         <Button.Ghost onClick={() => setVisible(false)}>
-          {locale.en.common.button.cancel}
+          {locale.en.adjustLeave.modal.button.cancel}
         </Button.Ghost>
 
-        <Button.Classic>
-          {locale.en.common.button.send}
+        <Button.Classic onClick={() => setDoubleConfirm(true)}>
+          {locale.en.adjustLeave.modal.button.ok}
         </Button.Classic>
       </ButtonGroup>
     </Wrapper>

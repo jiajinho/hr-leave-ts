@@ -2,9 +2,13 @@ export default {
   leaveType: "Leave Type",
 
   modal: {
-    title: "Adjust Leave Balance for {{ 1 }}",
-
-
+    adjust: {
+      title: "Adjust Leave Balance for {{ 1 }}",
+      comments: "Comments",
+      decrement: "-",
+      increment: "+"
+    },
+    doubleConfirm: "Are you sure to adjust holiday balances for these users?",
     button: {
       ok: "Adjust",
       cancel: "Cancel"

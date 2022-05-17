@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import { Checks } from '../../types';
@@ -22,19 +22,26 @@ export default ({
   const [doubleConfirm, setDoubleConfirm] = useState(false);
 
   const [leave, setLeave] = useState("0");
+  const [comments, setComments] = useState("");
 
+  const onDoubleConfirm = () => {
+    console.log("double confirm!");
+  }
 
   return (
     <Wrapper>
       {!doubleConfirm ?
         <Adjust
           checkboxes={checkboxes}
-          leave={leave}
-          setLeave={setLeave}
-          visible={visible}
+          leave={[leave, setLeave]}
+          comments={[comments, setComments]}
           setVisible={setVisible}
+          setDoubleConfirm={setDoubleConfirm}
         /> :
-        <DoubleConfirm />
+        <DoubleConfirm
+          setDoubleConfirm={setDoubleConfirm}
+          onDoubleConfirm={onDoubleConfirm}
+        />
       }
     </Wrapper>
   );
