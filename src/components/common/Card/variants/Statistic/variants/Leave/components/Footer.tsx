@@ -41,9 +41,11 @@ export default ({ legends, onViewClick }: {
 }) => {
   return (
     <Wrapper>
-      <Button.Classic onClick={onViewClick}>
-        {locale.en.common.button.viewDetail}
-      </Button.Classic>
+      {onViewClick &&
+        <Button.Classic onClick={onViewClick}>
+          {locale.en.common.button.viewDetail}
+        </Button.Classic>
+      }
 
       <LegendContainer>
         {legends.map((item, i) =>

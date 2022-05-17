@@ -3,34 +3,42 @@ import styled from 'styled-components/macro';
 
 import Style from '../styled';
 
-export const Wrapper = styled(Style)`
+export const Wrapper = styled(Style)(({ $hoverColor }: { $hoverColor: string }) => `
   background: #fff0;
-  color: var(--primary-color);
+  color: ${$hoverColor};
+  border-color: ${$hoverColor};
   font-weight: 500;
 
   &:hover {
-    background: var(--primary-color);
+    background: ${$hoverColor};
     color: white;
   }
-`;
+`);
 
-export default ({ children, SVGElement, onClick }: {
+export default ({
+  children,
+  SVGElement,
+  onClick,
+  hoverColor = "var(--primary-color)"
+}: {
   children: string,
   SVGElement?: ({ color }: { color?: string }) => JSX.Element,
-  onClick?: () => void
+  onClick?: () => void,
+  hoverColor?: string
 }) => {
   const [isHover, setHover] = useState(false);
 
   const handleMouseOver = () => setHover(true);
   const handleMouseOut = () => setHover(false);
 
-  const svgColor = isHover ? "white" : "var(--primary-color)";
+  const svgColor = isHover ? "white" : hoverColor;
 
   return (
     <Wrapper
       onClick={onClick}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      $hoverColor={hoverColor}
     >
       {children}
       {SVGElement && <SVGElement color={svgColor} />}

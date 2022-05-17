@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { DropdownList as WidgetDropdownList } from 'react-widgets/cjs';
 
 import locale from 'locale';
 import { Wrapper as _Wrapper, Title } from 'components/common/Card/styled';
 import Stat from '../../../Stat';
+import MonthYearPicker from 'components/common/MonthYearPicker';
 
 const StatBox = styled.div`
   margin: 20rem 0;
@@ -27,11 +28,18 @@ export default ({ title, consumed, remaining }: {
   consumed: string,
   remaining: string
 }) => {
+
+  const [date, setDate] = useState<Date>();
+
   return (
     <div>
       <TitleContainer>
         <Title>{title}</Title>
-        <DropdownList data={["2021", "2020", "2019"]} />
+        <MonthYearPicker
+          level="year"
+          value={date}
+          onChange={setDate}
+        />
       </TitleContainer>
 
       <StatBox>

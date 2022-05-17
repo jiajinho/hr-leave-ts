@@ -235,7 +235,25 @@ const pendingMod: Route = {
     url: "/pending-modifications",
     component: <PendingMod.Main />
   },
-  icon: Hourglass
+  icon: Hourglass,
+  routes: {
+    pending: {
+      allowUsers: ["admin"],
+      display: { header: "Pending Modification Detail" },
+      render: {
+        url: "/pending-modifications/pending/:id",
+        component: <PendingMod.Pending />
+      }
+    },
+    history: {
+      allowUsers: ["admin"],
+      display: { header: "History Modification Detail" },
+      render: {
+        url: "/pending-modifications/history/:id",
+        component: <PendingMod.History />
+      }
+    }
+  }
 }
 
 const error: Route = {

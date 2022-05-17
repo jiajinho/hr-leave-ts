@@ -1,3 +1,5 @@
+import { Status } from "components/common/Tag/types"
+
 export type User = {
   id: string,
   username: string,
@@ -5,9 +7,10 @@ export type User = {
   start: number,
   end: number,
   type: string,
-  duration: string,
+  duration: number,
   reason: string,
   comments: string,
-  thumbnail: string
+  thumbnail: string,
+  status: Status
 }
 
