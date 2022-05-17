@@ -1,15 +1,5 @@
 import type { Option } from "components/common/PrunableCheckbox/types";
 
-type Days = {
-  monday: Option,
-  tuesday: Option,
-  wednesday: Option,
-  thursday: Option,
-  friday: Option,
-  saturday: Option,
-  sunday: Option
-}
-
 const days: Option[] = [
   { id: "0", display: "Monday" },
   { id: "1", display: "Tuesday" },
@@ -20,6 +10,4 @@ const days: Option[] = [
   { id: "6", display: "Sunday" },
 ]
 
-export default {
-  days
-}
+export default days;
