@@ -36,6 +36,7 @@ export default ({
   value,
   placeholder,
   onChange,
+  onClick,
   onBlur,
   readOnly = false,
   icon
@@ -43,6 +44,7 @@ export default ({
   value?: string,
   placeholder?: string
   onChange?: (s: string) => void,
+  onClick?: () => void,
   onBlur?: () => void,
   readOnly?: boolean,
   icon?: JSX.Element
@@ -60,6 +62,7 @@ export default ({
       tabIndex={-1}
       onFocus={() => setFocus(true)}
       onBlur={() => setFocus(false)}
+      onClick={onClick}
     >
       <Input
         value={value}

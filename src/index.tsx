@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import "react-widgets/styles.css";
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-next-dates/dist/style.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

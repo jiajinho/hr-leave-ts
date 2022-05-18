@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { DropdownList as WidgetDropdownList } from 'react-widgets/cjs';
 
 import locale from 'locale';
 import { Wrapper as _Wrapper, Title } from 'components/common/Card/styled';
@@ -17,10 +16,6 @@ const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 20rem;
-`;
-
-const DropdownList = styled(WidgetDropdownList)`
-  width: 90rem;
 `;
 
 export default ({ title, consumed, remaining }: {
