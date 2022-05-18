@@ -18,14 +18,16 @@ const TimeContainer = styled.div`
     top: 100% !important;
   }
 
-  ${_Clock} {
-    height: 20rem;
-  }
+  ${_Clock} { height: 20rem }
 `;
 
 export default () => {
 
   const [columns, setColumns] = useState<Column<Day>[]>([]);
+
+  const [value, setValue] = useState<Date>();
+
+  console.log(value);
 
   useEffect(() => {
     const columns: Column<Day>[] = [
@@ -37,10 +39,11 @@ export default () => {
         title: "Start Time",
         render: r => (
           <TimeContainer>
-            <TimePicker locale={enUS}>
+            <TimePicker locale={enUS} onChange={(d) => d && setValue(d)}>
               {({ inputProps, openTimePicker }) =>
                 <Input
                   icon={<Clock color="var(--primary-color)" />}
+                  value={value?.toString()}
                   onClick={openTimePicker}
                 />
                 // <input {...inputProps} />
@@ -51,7 +54,18 @@ export default () => {
       },
       {
         title: "End Time",
-        render: r => r.end
+        render: r => (
+          <TimeContainer>
+            <TimePicker locale={enUS}>
+              {({ inputProps, openTimePicker }) =>
+                <Input
+                  icon={<Clock color="var(--primary-color)" />}
+                  onClick={openTimePicker}
+                />
+              }
+            </TimePicker>
+          </TimeContainer>
+        )
       },
       {
         title: "Total Hours",
@@ -60,7 +74,7 @@ export default () => {
     ];
 
     setColumns(columns);
-  }, []);
+  }, [value]);
 
 
   return columns;

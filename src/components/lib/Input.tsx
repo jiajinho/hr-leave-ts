@@ -41,7 +41,7 @@ export default ({
   readOnly = false,
   icon
 }: {
-  value?: string,
+  value?: string
   placeholder?: string
   onChange?: (s: string) => void,
   onClick?: () => void,
