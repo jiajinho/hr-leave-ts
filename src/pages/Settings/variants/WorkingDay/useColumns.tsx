@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { TimePicker } from 'react-next-dates';
 import { enUS } from 'date-fns/locale';
+import { format } from 'date-fns';
 
+import datetime from 'config/datetime';
 import type { Column } from 'components/lib/Table/types';
 import type { Day } from './types';
 
@@ -11,11 +13,18 @@ import Clock, { Wrapper as _Clock } from 'components/svg/Clock';
 
 const TimeContainer = styled.div`
   position: relative;
-  width: 200rem;
+  width: 100%;
+  max-width: 200rem;
 
   .react-next-dates {
     margin-top: 3rem;
     top: 100% !important;
+  }
+
+  .clock-selection,
+  .clock-selection::before,
+  .clock-selection::after {
+    background: var(--primary-color) !important;
   }
 
   ${_Clock} { height: 20rem }
@@ -25,9 +34,10 @@ export default () => {
 
   const [columns, setColumns] = useState<Column<Day>[]>([]);
 
-  const [value, setValue] = useState<Date>();
+  //Test
+  const [start, setStart] = useState<Date>(new Date());
+  const [end, setEnd] = useState<Date>(new Date());
 
-  console.log(value);
 
   useEffect(() => {
     const columns: Column<Day>[] = [
@@ -39,14 +49,17 @@ export default () => {
         title: "Start Time",
         render: r => (
           <TimeContainer>
-            <TimePicker locale={enUS} onChange={(d) => d && setValue(d)}>
-              {({ inputProps, openTimePicker }) =>
+            <TimePicker
+              locale={enUS}
+              onChange={(d) => d && setStart(d)}
+              date={start}
+            >
+              {({ openTimePicker }) =>
                 <Input
                   icon={<Clock color="var(--primary-color)" />}
-                  value={value?.toString()}
+                  value={format(start, datetime.format.timePicker)}
                   onClick={openTimePicker}
                 />
-                // <input {...inputProps} />
               }
             </TimePicker>
           </TimeContainer>
@@ -56,10 +69,15 @@ export default () => {
         title: "End Time",
         render: r => (
           <TimeContainer>
-            <TimePicker locale={enUS}>
-              {({ inputProps, openTimePicker }) =>
+            <TimePicker
+              locale={enUS}
+              onChange={(d) => d && setEnd(d)}
+              date={end}
+            >
+              {({ openTimePicker }) =>
                 <Input
                   icon={<Clock color="var(--primary-color)" />}
+                  value={format(end, datetime.format.timePicker)}
                   onClick={openTimePicker}
                 />
               }
@@ -74,7 +92,7 @@ export default () => {
     ];
 
     setColumns(columns);
-  }, [value]);
+  }, [start, end]);
 
 
   return columns;
