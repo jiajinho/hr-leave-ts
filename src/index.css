@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-  font-size: 62.5%;
+  font-size: 6.25%;
 
-  --font: 'Poppins', sans-serif;
+  --font-family: 'Poppins', sans-serif;
+  --font-size: 13rem;
+  --primary-color: #7E2ECF;
+
+  --form-max-width: 800rem;
+
+  --container-bg-color: white;
+  --container-padding: 20rem 30rem;
+  --container-border-radius: 10rem;
 }
 
 * {
@@ -12,9 +20,13 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #f7f7f7;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.6rem;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,4 +34,26 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.rw-widget svg {
+  color: var(--primary-color);
+}
+
+.rw-widget > div {
+  transition: 0.25s !important;
+}
+
+.rw-state-focus > div:first-of-type {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 1px 0 var(--primary-color) !important;
+}
+
+.rw-list-option.rw-state-selected, .rw-cell.rw-state-selected {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.Toastify__toast-body {
+  font-family: var(--font-family);
 }
