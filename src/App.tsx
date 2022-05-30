@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components/macro';
 import { Routes, useLocation, Route, Navigate } from 'react-router-dom';
 import { useControls } from 'leva';
@@ -12,6 +12,10 @@ import useSetupNavStore from 'hooks/useSetupNavStore';
 
 import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
+import useLocalStorage from 'hooks/useLocalStorage';
+
+import axios from './api';
+import { create, getById, list, update } from 'api/department';
 
 const Wrapper = styled.main`
   --split-threshold: 230rem;
@@ -65,15 +69,24 @@ function App() {
   const setUserType = useUserStore(state => state.setType);
 
   useFixRoute();
-
   useSetupNavStore();
-
   useRoutePermission();
+  useLocalStorage();
 
   useEffect(() => {
     setUserType(admin ? "admin" : "user");
   }, [admin]);
 
+  useEffect(() => {
+    // create("Sample", "Hola", "active");
+    // list();
+    // getById("MW93fFUOvt");
+
+    update("MW93fFUOvt", {
+      description: "No name stingy"
+    });
+
+  }, []);
 
   /**
    * Render
