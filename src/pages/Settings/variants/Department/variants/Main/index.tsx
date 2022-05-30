@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import type { Department } from '../../types';
+import department from 'api/department';
+import type { Department } from 'schema';
 import mock from '../../mock-data';
 
 import Table, {
@@ -32,22 +33,36 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
+  const [departments, setDepartments] = useState<Department[]>([]);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [delDept, setDelDept] = useState<Department>();
 
-  const openDelDeptModal = (d: Department) => {
+  const openModal = (d: Department) => {
     setDelDept(d);
     setModalVisible(true);
   }
 
-  const columns = useColumns(openDelDeptModal);
+  const columns = useColumns(openModal);
+
+  useEffect(() => {
+    (async () => {
+      const response = await department.list();
+      const data: Department[] = [];
+
+      response.forEach(item => {
+        data.push(department.mapToClient(item));
+      })
+
+      setDepartments(data);
+    })();
+  }, []);
 
   return (
     <>
       <Wrapper>
         <Table<Department>
-          data={mock}
+          data={departments}
           columns={columns}
           pageSize={5}
         />

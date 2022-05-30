@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components/macro';
 import { Routes, useLocation, Route, Navigate } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { useControls } from 'leva';
 
 import routes from './config/routes';
@@ -14,8 +15,7 @@ import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
 import Header from './components/Header';
 import useLocalStorage from 'hooks/useLocalStorage';
 
-import axios from './api';
-import { create, getById, list, update } from 'api/department';
+import department from 'api/department';
 
 const Wrapper = styled.main`
   --split-threshold: 230rem;
@@ -63,6 +63,7 @@ function App() {
   });
 
   const nodes = useMemo(() => generateRoute(routes, location.pathname), []);
+  const queryClient = useMemo(() => new QueryClient(), []);
 
   const setUserType = useUserStore(state => state.setType);
 
@@ -80,9 +81,8 @@ function App() {
     // list();
     // getById("MW93fFUOvt");
 
-    update("MW93fFUOvt", {
-      description: "No name stingy"
-    });
+    // department.list();
+    // department.destroy("MW93fFUOvt");
 
   }, []);
 
@@ -97,14 +97,17 @@ function App() {
         <Header />
 
         <Body>
-          <Routes>
-            {nodes}
+          <QueryClientProvider client={queryClient}>
+            <Routes>
+              {nodes}
 
-            <Route
-              path="*"
-              element={<Navigate to={routes.error.render.url} replace />}
-            />
-          </Routes>
+              <Route
+                path="*"
+                element={<Navigate to={routes.error.render.url} replace />}
+              />
+            </Routes>
+
+          </QueryClientProvider>
         </Body>
       </Container>
     </Wrapper>

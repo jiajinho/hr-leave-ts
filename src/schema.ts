@@ -1,6 +1,6 @@
 export type Department = {
   id: string,
   name: string,
-  isActive: boolean,
-  description: string,
+  isActive: "active" | "inactive",
+  description: string
 }

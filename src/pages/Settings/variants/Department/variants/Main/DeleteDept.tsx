@@ -1,7 +1,7 @@
 import React from 'react';
 
 import locale from 'locale';
-import type { Department } from '../../types';
+import type { Department } from 'schema';
 
 import { Wrapper, Description, ButtonGroup } from 'components/lib/Modal/styled';
 import Button from 'components/lib/Button';

@@ -4,7 +4,8 @@ import styled from 'styled-components/macro';
 import locale from 'locale';
 import routes from 'config/routes';
 import type { Column } from 'components/lib/Table/types';
-import type { Department } from '../../types';
+import type { Department } from 'schema';
+
 import useNavStore from 'stores/useNavStore';
 import { fillRouteParam } from 'utils';
 

@@ -8,6 +8,7 @@ import settings from "./settings";
 import adjustLeave from "./adjustLeave";
 import pendingMod from "./pendingMod";
 import error404 from "./error404";
+import error from "./error";
 
 export default {
   common,
@@ -19,5 +20,6 @@ export default {
   settings,
   adjustLeave,
   pendingMod,
-  error404
+  error404,
+  error
 }
