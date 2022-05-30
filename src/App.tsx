@@ -11,7 +11,7 @@ import useFixRoute from 'hooks/useFixRoute';
 import useRoutePermission from 'hooks/useRoutePermission';
 import useSetupNavStore from 'hooks/useSetupNavStore';
 
-import Sidebar, { Wrapper as _Sidebar } from './components/Sidebar';
+import Sidebar, { Wrapper as _Sidebar } from './components/SideBar';
 import Header from './components/Header';
 import useLocalStorage from 'hooks/useLocalStorage';
 
