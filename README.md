@@ -6,15 +6,11 @@
 3) `npm i`
 4) `npm start`
 
----
-
 ## Before you test
 1) Head over to `/src/stores/useLocalStore.ts` and find the two variable named `tokenUser` and `orgId`. Then assign valid values to them.
 
 ## Ready to be tested
 - Admin: Settings > Department (CRUD) 
-
----
 
 ## Additional Information
 
