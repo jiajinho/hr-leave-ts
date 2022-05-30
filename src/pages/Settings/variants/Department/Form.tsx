@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
+import { DropdownList } from 'react-widgets/cjs';
 
 import locale from 'locale';
+import { status } from './data';
 
 import Label from 'components/lib/Label';
 import Input from 'components/lib/Input';
@@ -14,11 +16,10 @@ const Wrapper = styled.div`
   --gap: 20rem;
 
   position: relative;
-  max-width: var(--form-max-width);
+  width: 650rem;
   padding: var(--container-padding);
   padding-top: 35rem;
 
-  margin: 0 auto;
   background: var(--container-bg-color);
   border-radius: var(--container-border-radius);
 
@@ -49,22 +50,18 @@ const ButtonGroup = styled.div`
 
 export default ({
   name,
-
   comments,
-
+  isActive,
   okText,
   onOk,
-
   cancelText,
   onCancel
 }: {
   name: [string, (s: string) => void],
-
   comments: [string, (s: string) => void],
-
+  isActive: [boolean, (b: boolean) => void],
   okText: string,
   onOk?: () => void,
-
   cancelText?: string,
   onCancel?: () => void
 }) => {
@@ -87,7 +84,13 @@ export default ({
         </Label>
 
         <Label title={locale.en.settings.department.form.status}>
-          <Input />
+          <DropdownList
+            data={status}
+            dataKey="value"
+            textField="display"
+            value={isActive[0]}
+            onChange={e => isActive[1](e.value)}
+          />
         </Label>
       </FlexContainer>
 

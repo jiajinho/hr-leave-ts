@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
 import { useNavigate, useParams } from 'react-router-dom';
+import { MutationFunction, useMutation, useQueryClient } from 'react-query';
 
 import locale from 'locale';
 import routes from 'config/routes';
-import mock from '../mock-data';
+import department from 'api/department';
 
 import Form from '../Form';
 import useNavStore from 'stores/useNavStore';
-
-const Wrapper = styled.div`
-`;
+import { toast } from 'react-toastify';
 
 export default () => {
   /**
@@ -23,33 +21,50 @@ export default () => {
 
   const [name, setName] = useState("");
   const [comments, setComments] = useState("");
+  const [isActive, setIsActive] = useState(true);
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(department.update, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(department.queryKey);
+
+      const message = locale.en.toastMessages.updateSuccess.replace("{{ 1 }}", 'Department');
+      toast.success(message);
+    }
+  });
 
   useEffect(() => {
     if (navigate && id) {
-      let hasData = false;
+      (async () => {
+        try {
+          const response = await department.getById(id);
+          const data = department.mapToReactSchema(response);
 
-      for (let i = 0; i < mock.length; i++) {
-        if (mock[i].id === id) {
-          setName(mock[i].name);
-          setComments(mock[i].description);
-
-          hasData = true;
-          break;
+          setName(data.name);
+          setComments(data.description);
+          setIsActive(data.isActive);
         }
-      }
-
-      if (!hasData) {
-        const route = routes.error;
-        navigate(route);
-      }
+        catch (ex: any) {
+          const route = routes.error;
+          navigate(route);
+        }
+      })();
     }
-  }, [navigate, id]);
+  }, [navigate !== undefined, id]);
 
   /**
-   * Not hooks
+   * Not hook
    */
-  const handleOk = () => {
-    console.log(name);
+  const handleSubmit = () => {
+    if (id) {
+      mutation.mutate({
+        uId: id,
+        name,
+        description: comments,
+        status: isActive ? "active" : "inActive"
+      });
+    }
   }
 
   const handleCancel = () => {
@@ -60,18 +75,16 @@ export default () => {
    * Render
    */
   return (
-    <Wrapper>
-      <Form
-        name={[name, setName]}
+    <Form
+      name={[name, setName]}
+      comments={[comments, setComments]}
+      isActive={[isActive, setIsActive]}
 
-        comments={[comments, setComments]}
+      okText={locale.en.common.button.update}
+      onOk={handleSubmit}
 
-        okText={locale.en.common.button.update}
-        onOk={handleOk}
-
-        cancelText={locale.en.common.button.cancel}
-        onCancel={handleCancel}
-      />
-    </Wrapper>
+      cancelText={locale.en.common.button.cancel}
+      onCancel={handleCancel}
+    />
   );
 }

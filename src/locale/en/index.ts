@@ -8,7 +8,7 @@ import settings from "./settings";
 import adjustLeave from "./adjustLeave";
 import pendingMod from "./pendingMod";
 import error404 from "./error404";
-import error from "./error";
+import toastMessages from "./toastMessages";
 
 export default {
   common,
@@ -21,5 +21,5 @@ export default {
   adjustLeave,
   pendingMod,
   error404,
-  error
+  toastMessages
 }

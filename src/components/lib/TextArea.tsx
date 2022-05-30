@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 export const Wrapper = styled.textarea`
   width: 100%;
+  height: 120rem;
   padding: 10rem;
   
   outline: none;

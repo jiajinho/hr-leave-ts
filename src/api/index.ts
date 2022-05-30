@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import locale from "locale";
+import api from "config/api";
 import useLocalStore from "stores/useLocalStore";
 
 const axiosInstance = axios.create();
@@ -12,16 +13,16 @@ axiosInstance.interceptors.request.use(
     const orgId = useLocalStore.getState().orgId;
 
     if (!tokenUser) {
-      toast.error(locale.en.error.missingTokenUser);
-      return Promise.reject(locale.en.error.missingTokenUser);
+      toast.error(locale.en.toastMessages.missingTokenUser);
+      return Promise.reject(locale.en.toastMessages.missingTokenUser);
     }
 
     if (!orgId) {
-      toast.error(locale.en.error.missingOrgId);
-      return Promise.reject(locale.en.error.missingOrgId);
+      toast.error(locale.en.toastMessages.missingOrgId);
+      return Promise.reject(locale.en.toastMessages.missingOrgId);
     }
 
-    config.url = `http://localhost:3011/${config.url}`;
+    config.url = `${api.url}/${config.url}`;
     config.headers!.authorization = useLocalStore.getState().tokenUser;
     config.headers!.orgId = useLocalStore.getState().orgId;
 

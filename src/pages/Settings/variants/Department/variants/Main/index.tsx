@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useQuery } from 'react-query';
 
+import api from 'config/api';
 import department from 'api/department';
 import type { Department } from 'schema';
-import mock from '../../mock-data';
+import useColumns from './useColumns';
 
 import Table, {
   Wrapper as _Table,
   Header as _Table__Header,
   Cell as _Table__Cell
 } from 'components/lib/Table';
-
 import Modal from 'components/lib/Modal';
-import useColumns from './useColumns';
 import DeleteDept from './DeleteDept';
 
 const Wrapper = styled.div`
@@ -33,31 +33,42 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
+  /**
+   * Hooks
+   */
+  const { data: queryData } = useQuery(
+    department.queryKey,
+    department.list,
+    { staleTime: api.staleTime }
+  );
+
   const [departments, setDepartments] = useState<Department[]>([]);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [delDept, setDelDept] = useState<Department>();
 
-  const openModal = (d: Department) => {
-    setDelDept(d);
-    setModalVisible(true);
-  }
-
-  const columns = useColumns(openModal);
+  const columns = useColumns(
+    (d: Department) => {
+      setDelDept(d);
+      setModalVisible(true);
+    }
+  );
 
   useEffect(() => {
-    (async () => {
-      const response = await department.list();
+    if (queryData) {
       const data: Department[] = [];
 
-      response.forEach(item => {
-        data.push(department.mapToClient(item));
-      })
+      queryData.forEach(item => {
+        data.push(department.mapToReactSchema(item));
+      });
 
       setDepartments(data);
-    })();
-  }, []);
+    }
+  }, [queryData]);
 
+  /**
+   * Render
+   */
   return (
     <>
       <Wrapper>
@@ -73,7 +84,7 @@ export default () => {
         >
           <DeleteDept
             setModalVisible={setModalVisible}
-            department={delDept}
+            department={[delDept, setDelDept]}
           />
         </Modal>
       </Wrapper>
