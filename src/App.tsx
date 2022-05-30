@@ -24,8 +24,6 @@ const Wrapper = styled.main`
   min-height: 100vh;
   width: 100%;
 
-  background: #f7f7f7;
-
   ${_Sidebar} {
     position: fixed;
     z-index: 10;
