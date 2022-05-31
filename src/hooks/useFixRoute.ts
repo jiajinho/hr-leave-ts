@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, matchPath } from "react-router-dom";
 
 import routes, { Route } from "config/routes";
 import useNavStore from "stores/useNavStore";
@@ -28,7 +28,7 @@ function getRegex(url: string): RegExp {
   return new RegExp(join);
 }
 
-function getRoutes(routes: { [k: string]: Route }, targetUrl: string): Route | undefined {
+function getRoute(routes: { [k: string]: Route }, targetUrl: string): Route | undefined {
   for (const [, v] of Object.entries(routes)) {
     if (v.render) {
       const regex = getRegex(v.render.url);
@@ -39,7 +39,7 @@ function getRoutes(routes: { [k: string]: Route }, targetUrl: string): Route | u
     }
 
     if (v.routes) {
-      const route: Route | undefined = getRoutes(v.routes, targetUrl);
+      const route: Route | undefined = getRoute(v.routes, targetUrl);
       if (route) return route;
     }
   }
@@ -53,13 +53,18 @@ export default () => {
   const currentRoute = useNavStore(state => state.currentRoute);
   const setCurrentRoute = useNavStore(state => state.setCurrentRoute);
 
+  const fixRoute = () => {
+    const route = getRoute(routes, location.pathname);
+    route && setCurrentRoute(route);
+  }
+
   useEffect(() => {
     if (!currentRoute) {
-      const route = getRoutes(routes, location.pathname);
-
-      if (route) {
-        setCurrentRoute(route);
-      }
+      fixRoute();
+    }
+    else {
+      const matchResult = matchPath(currentRoute.render.url, location.pathname);
+      matchResult ?? fixRoute();
     }
   }, [location, currentRoute]);
 }

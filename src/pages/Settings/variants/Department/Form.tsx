@@ -72,7 +72,10 @@ export default ({
     <Wrapper>
       <XWithRing
         color="var(--primary-color)"
-        onClick={() => navigate(-1)}
+        onClick={() => {
+          navigate(-1);
+          console.log(document.referrer);
+        }}
       />
 
       <FlexContainer>
